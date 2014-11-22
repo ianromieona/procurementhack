@@ -1,42 +1,18 @@
 <div id="morphsearch" class="morphsearch">
-	<form class="morphsearch-form">
-		<input class="morphsearch-input" type="search" placeholder="Search..."/>
+	<form class="morphsearch-form" method="POST" action="<?php echo Yii::app()->createAbsoluteUrl('project/search'); ?>">
+		<input class="morphsearch-input" id="searchText" autocomplete="off" type="search" placeholder="Search..."/>
 		<input type="hidden" name="location" id="location">
-		<button class="morphsearch-submit" type="submit">Search</button>
+		<button class="morphsearch-submit" type="submit" value="search"><i class="fa fa-search"></i></button>
 	</form>
 	<div class="morphsearch-content">
-		<div class="dummy-column">
-			<h2>Projects Nearby</h2>
-			<a class="dummy-media-object" href="http://twitter.com/SaraSoueidan">
-				<img class="round" src="http://0.gravatar.com/avatar/81b58502541f9445253f30497e53c280?s=50&d=identicon&r=G" alt="Sara Soueidan"/>
-				<h3>Sara Soueidan</h3>
-			</a>
-			<a class="dummy-media-object" href="http://twitter.com/rachsmithtweets">
-				<img class="round" src="http://0.gravatar.com/avatar/48959f453dffdb6236f4b33eb8e9f4b7?s=50&d=identicon&r=G" alt="Rachel Smith"/>
-				<h3>Rachel Smith</h3>
-			</a>
-			<a class="dummy-media-object" href="http://www.twitter.com/peterfinlan">
-				<img class="round" src="http://0.gravatar.com/avatar/06458359cb9e370d7c15bf6329e5facb?s=50&d=identicon&r=G" alt="Peter Finlan"/>
-				<h3>Peter Finlan</h3>
-			</a>
-			<a class="dummy-media-object" href="http://www.twitter.com/pcridesagain">
-				<img class="round" src="http://1.gravatar.com/avatar/db7700c89ae12f7d98827642b30c879f?s=50&d=identicon&r=G" alt="Patrick Cox"/>
-				<h3>Patrick Cox</h3>
-			</a>
-			<a class="dummy-media-object" href="https://twitter.com/twholman">
-				<img class="round" src="http://0.gravatar.com/avatar/cb947f0ebdde8d0f973741b366a51ed6?s=50&d=identicon&r=G" alt="Tim Holman"/>
-				<h3>Tim Holman</h3>
-			</a>
-			<a class="dummy-media-object" href="https://twitter.com/shaund0na">
-				<img class="round" src="http://1.gravatar.com/avatar/9bc7250110c667cd35c0826059b81b75?s=50&d=identicon&r=G" alt="Shaun Dona"/>
-				<h3>Shaun Dona</h3>
-			</a>
+		<div class="dummy-column nearby">
+			<h1 class="loc">Projects in </h1>
 		</div>
-		<div class="dummy-column">
-			<h2>Top Budgeted</h2>
+		<div class="dummy-column rated">
+			<h1>Top Budgeted</h1>
 		</div>
-		<div class="dummy-column">
-			<h2>Most Recent</h2>
+		<div class="dummy-column recent">
+			<h1>Most Recent</h1>
 		</div>
 	</div><!-- /morphsearch-content -->
 	<span class="morphsearch-close"></span>
@@ -57,19 +33,93 @@ $(document).ready(function(){
 			type:'GET',
 			success:function(result){
 				$('#location').val(result['results']['2']['address_components']['0']['long_name']);
-
-				//get data for projects nearby
-				$location = $('#location').val();
+				$('.loc').append(result['results']['2']['address_components']['0']['long_name']);
+				//get current location
+				$location = result['results']['2']['address_components']['0']['long_name'];
+				//API call url
 				$url = "<?php echo Yii::app()->createAbsoluteUrl('api/callData'); ?>";
-				$query = 'SELECT * FROM "116b0812-23b4-4a92-afcc-1030a0433108" WHERE location = "'+$location+'"';
+				//queries
+				$queryNearby =  'Select ref_id, tender_title, description, publish_date, closing_date, location from "baccd784-45a2-4c0c-82a6-61694cd68c9d" b LEFT JOIN "116b0812-23b4-4a92-afcc-1030a0433108" l ON b.ref_id = l.refid WHERE l.location=\''+$location+'\' order by b.publish_date desc limit 5 offset 0';
+				$queryRated =  'Select ref_id, tender_title, description, publish_date, closing_date, approved_budget from "baccd784-45a2-4c0c-82a6-61694cd68c9d" b order by b.approved_budget desc limit 5 offset 0';
+				$queryRecent =  'Select ref_id, tender_title, description, publish_date, closing_date, location from "baccd784-45a2-4c0c-82a6-61694cd68c9d" b LEFT JOIN "116b0812-23b4-4a92-afcc-1030a0433108" l ON b.ref_id = l.refid order by b.publish_date desc limit 5 offset 0';
+
+				//ajax call for nearby projects
 				$.ajax({
-					url:$url+"?query="+$query,
-					success:function(result2){
-						console.log(result2);
+					url:$url+"?query="+$queryNearby,
+					type:'json',
+					success:function(result){
+						$resultData = jQuery.parseJSON(result);
+						if($resultData.length > 0){
+							for($counter = 0; $counter < $resultData.length; $counter++){
+								console.log($resultData[$counter]);
+								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
+								$('.nearby').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+														   +'<div class="infoNear"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
+									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
+									                       +'</small></div></div>');
+							}
+						}else{
+							$('.nearby').append('<a class="dummy-media-object"><h1>No Projects to Show</h1></a>');
+						}
+					},
+					error:function(err){
+						console.log('error:'+err);
 					}
 				});
+				
+				//ajax call for top rated projects
+				$.ajax({
+					url:$url+"?query="+$queryRated,
+					type:'json',
+					success:function(result){
+						$resultData = jQuery.parseJSON(result);
+						if($resultData.length > 0){
+							for($counter = 0; $counter < $resultData.length; $counter++){
+								console.log($resultData[$counter]);
+								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
+								$budget = $resultData[$counter]['approved_budget'];
+								$('.rated').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+														   +'<div class="infoRated"><br/><small><b>Approved Budget: </b>'+$budget
+									                       +'<br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
+									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
+									                       +'</small></div></div>');
+							}
+						}else{
+							$('.rated').append('<a class="dummy-media-object"><h1>No Projects to Show</h1></a>');
+						}
+					},
+					error:function(err){
+						console.log('error:'+err);
+					}
+				});
+
+				//ajax call for top recent projects
+				$.ajax({
+					url:$url+"?query="+$queryRecent,
+					type:'json',
+					success:function(result){
+						$resultData = jQuery.parseJSON(result);
+						if($resultData.length > 0){
+							for($counter = 0; $counter < $resultData.length; $counter++){
+								console.log($resultData[$counter]);
+								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
+								$('.recent').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+														   +'<div class="infoRecent"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
+									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
+									                       +'</small></div></div>');
+							}
+						}else{
+							$('.recent').append('<a class="dummy-media-object"><h1>No Projects to Show</h1></a>');
+						}
+					},
+					error:function(err){
+						console.log('error:'+err);
+					}
+				});
+				
 			}
 		});
+		
 	}, function() {
 	    alert('Map not loaded.');
 	});
@@ -119,15 +169,13 @@ $(document).ready(function(){
 			toggleSearch(ev);
 		}
 	} );
-
-	morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
 });
 </script>
 <style>
 .morphsearch {
 	width: 200px;
 	min-height: 40px;
-	background: #f1f1f1;
+	background: #FFFFFF;
 	position: absolute;
 	z-index: 10000;
 	top: 30px;
@@ -228,15 +276,16 @@ input[type="search"] { /* reset normalize */
 	position: absolute;
 	width: 80px;
 	height: 80px;
-	text-indent: 100px;
+	text-indent: 0px;
+	font-size:30px;
+	color:#FFFFFF;
 	overflow: hidden;
 	right: 0;
-	top: 50%;
+	top: 30%;
 	background-size: 100%;
 	border: none;
 	pointer-events: none;
 	transform-origin: 50% 50%;
-	opacity: 0;
 	-webkit-transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
 	transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
 }
@@ -313,7 +362,7 @@ input[type="search"] { /* reset normalize */
 	height: 0;
 	overflow: hidden;
 	padding: 0 10.5%;
-	background: #f1f1f1;
+	background: #FFFFFF;
 	position: absolute;
 	pointer-events: none;
 	opacity: 0;
@@ -364,12 +413,22 @@ input[type="search"] { /* reset normalize */
 	margin: 0 5%;
 }
 
-.dummy-column h2 {
-	font-size: 1em;
+.dummy-column h1 {
+	font-family: 'Lato2';
+	font-size: 1.5em;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	font-weight: 800;
-	color: #c2c2c2;
+	font-weight: 300;
+	color: #333;
+	padding: 0.5em 0;
+}
+
+.dummy-column h2 {
+	font-size: 1.1em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 400;
+	color: #333;
 	padding: 0.5em 0;
 }
 
@@ -378,7 +437,6 @@ input[type="search"] { /* reset normalize */
 }
 
 .dummy-media-object {
-	padding: 0.75em;
 	display: block;
 	margin: 0.3em 0;
 	cursor: pointer;
@@ -410,6 +468,10 @@ input[type="search"] { /* reset normalize */
 
 .dummy-media-object:hover h3 {
 	color: rgba(236,90,98,1);
+}
+
+.dummy-media-object h2 {
+	padding:0.75em;
 }
 
 /* Overlay */
@@ -486,4 +548,53 @@ input:focus{
 	outline: none !important;
 	box-shadow:none !important;
 }
+
+#searchText{
+	color:#333;
+}
+
+.infoRated{
+	background-color:#333;
+	text-align:right;
+	color:#FFFFFF;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left:0.75em;
+	padding-right:0.75em;
+	padding-bottom:0.75em;
+}
+
+.infoNear{
+	background-color:#E74C3C;
+	text-align:right;
+	color:#FFFFFF;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left:0.75em;
+	padding-right:0.75em;
+	padding-bottom:0.75em;
+}
+
+.infoRated{
+	background-color:#333;
+	text-align:right;
+	color:#FFFFFF;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left:0.75em;
+	padding-right:0.75em;
+	padding-bottom:0.75em;
+}
+
+.infoRecent{
+	background-color:#D8B559;
+	text-align:right;
+	color:#FFFFFF;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left:0.75em;
+	padding-right:0.75em;
+	padding-bottom:0.75em;
+}
+
 </style>

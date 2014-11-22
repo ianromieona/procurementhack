@@ -26,7 +26,7 @@ class PhilgepsApi extends CFormModel
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 		$result = json_decode(curl_exec($ch),TRUE);
 		curl_close($ch);
-
+		
 		if($result['success']){
 			return $result['result']['records'];
 		}
