@@ -19,6 +19,48 @@
 </div><!-- /morphsearch -->
 <div class="overlay"></div>
 </div><!-- /container -->
+<div id="banner">
+	<div class="container intro_wrapper">
+		<div class="inner_content">
+			<div class="pad30"></div>
+		</div>
+	</div>
+</div>
+<div class="container wrapper analytics">
+	<div class="pad30"></div>
+	<h1 class="title">Organization Analysis</h1>
+	<div class="row-fluid">
+		<div class="span4 stat">
+			<div class="text-center statTitle"><i class="fa fa-users"></i> Buyer Analysis</div>
+			<div class="text-center statResult"><?php echo $buyer; ?></div>
+			<div class="text-center sub">ORGANIZATIONS</div>
+		</div>
+		<div class="span4 stat">
+			<div class="text-center statTitle"><i class="fa fa-truck"></i> Supplier Analysis</div>
+			<div class="text-center statResult"><?php echo $seller; ?></div>
+			<div class="text-center sub">ORGANIZATIONS</div>
+		</div>
+		<div class="span4 stat">
+			<div class="text-center statTitle"><i class="fa fa-pagelines"></i> CSO Analysis</div>
+			<div class="text-center statResult"><?php echo $cso; ?></div>
+			<div class="text-center sub">ORGANIZATIONS</div>
+		</div>
+	</div>
+	<br/>
+	<h1 class="title">Location Analysis</h1>
+	<div class="row-fluid">
+		<div class="span6 stat">
+			<div class="text-center statTitle"><i class="fa fa-arrow-circle-up"></i> Most Projects</div>
+			<div class="text-center statResult"><?php echo $location[0]['location']; ?></div>
+			<div class="text-center sub"><?php echo $location[0]['count']; ?> PROJECTS</div>
+		</div>
+		<div class="span6 stat">
+			<div class="text-center statTitle"><i class="fa fa-arrow-circle-down"></i> Least Projects</div>
+			<div class="text-center statResult"><?php echo $location[count($location)-1]['location']; ?></div>
+			<div class="text-center sub"><?php echo $location[count($location)-1]['count']; ?> PROJECTS</div>
+		</div>
+	</div>
+</div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 <script>
 $(document).ready(function(){
@@ -178,7 +220,7 @@ $(document).ready(function(){
 	background: #FFFFFF;
 	position: absolute;
 	z-index: 10000;
-	top: 30px;
+	top: 13px;
 	right: 50px;
 	-webkit-transform-origin: 100% 0;
 	transform-origin: 100% 0;
@@ -584,6 +626,28 @@ input:focus{
 	padding-left:0.75em;
 	padding-right:0.75em;
 	padding-bottom:0.75em;
+}
+
+.stat{
+	background-color:#FFFFFF;
+	padding:10px;
+}
+
+.statTitle{
+	padding-top:10px;
+	font-weight:bold;
+	font-size:30px;
+}
+
+.statResult{
+	padding-bottom:20px;
+	margin-top:30px;
+	font-weight:bold;
+	font-size:60px;
+}
+
+.sub{
+	font-weight:bold;
 }
 
 </style>

@@ -1,11 +1,17 @@
 <div id="morphsearch" class="morphsearch open">
-	<form class="morphsearch-form" method="POST" action="http://localhost/procurementhack/project/search">
+	<form class="morphsearch-form" method="POST" action="<?php echo Yii::app()->createAbsoluteUrl('project/search'); ?>">
 		<input class="morphsearch-input active" name="keyword" id="searchText" autocomplete="off" type="text" value="<?php echo $key; ?>" placeholder="Search...">
 		<input type="hidden" name="location" id="location" value="Makati">
 		<button class="morphsearch-submit" type="submit" value="search"><i class="fa fa-search"></i></button>
 	</form>
 	<div class="morphsearch-content">
 		<?php if(sizeOf($data) > 0){ ?>
+			<?php if(($offset-1) != -1){ ?>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>">Previous</a>
+			<?php } ?>
+			<?php if(($offset*10) <= $count){ ?>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>">Next</a>
+			<?php } ?>
 			<?php for($counter = 0; $counter < sizeOf($data); $counter++){ ?>
 				<div class="dummy-media-object">
 					<a href="<?php echo Yii::app()->createAbsoluteUrl('/project/view',array('id'=>$data[$counter]['ref_id'])); ?>">
@@ -26,6 +32,12 @@
 						</small>
 					</div>
 				</div>
+			<?php } ?>
+			<?php if(($offset-1) != -1){ ?>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>">Previous</a>
+			<?php } ?>
+			<?php if(($offset*10) <= $count){ ?>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>">Next</a>
 			<?php } ?>
 		<?php }else{ ?>
 			<a class="dummy-media-object"><h1>No Projects to Show</h1></a>
