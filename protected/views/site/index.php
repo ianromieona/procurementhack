@@ -33,17 +33,17 @@
 		<div class="span4 stat">
 			<div class="text-center statTitle"><i class="fa fa-users"></i> Buyer Analysis</div>
 			<div class="text-center statResult"><?php echo $buyer; ?></div>
-			<div class="text-center sub">ORGANIZATIONS</div>
+			<div class="text-center sub">ORGANIZATION(S)</div>
 		</div>
 		<div class="span4 stat">
 			<div class="text-center statTitle"><i class="fa fa-truck"></i> Supplier Analysis</div>
 			<div class="text-center statResult"><?php echo $seller; ?></div>
-			<div class="text-center sub">ORGANIZATIONS</div>
+			<div class="text-center sub">ORGANIZATION(S)</div>
 		</div>
 		<div class="span4 stat">
 			<div class="text-center statTitle"><i class="fa fa-pagelines"></i> CSO Analysis</div>
 			<div class="text-center statResult"><?php echo $cso; ?></div>
-			<div class="text-center sub">ORGANIZATIONS</div>
+			<div class="text-center sub">ORGANIZATION(S)</div>
 		</div>
 	</div>
 	<br/>
@@ -52,12 +52,26 @@
 		<div class="span6 stat">
 			<div class="text-center statTitle"><i class="fa fa-arrow-circle-up"></i> Most Projects</div>
 			<div class="text-center statResult"><?php echo $location[0]['location']; ?></div>
-			<div class="text-center sub"><?php echo $location[0]['count']; ?> PROJECTS</div>
+			<div class="text-center sub"><?php echo $location[0]['count']; ?> PROJECT(S)</div>
 		</div>
 		<div class="span6 stat">
 			<div class="text-center statTitle"><i class="fa fa-arrow-circle-down"></i> Least Projects</div>
 			<div class="text-center statResult"><?php echo $location[count($location)-1]['location']; ?></div>
-			<div class="text-center sub"><?php echo $location[count($location)-1]['count']; ?> PROJECTS</div>
+			<div class="text-center sub"><?php echo $location[count($location)-1]['count']; ?> PROJECT(S)</div>
+		</div>
+	</div>
+	<br/>
+	<h1 class="title">Bidder Analysis</h1>
+	<div class="row-fluid">
+		<div class="span6 stat">
+			<div class="text-center statTitle"><i class="fa fa-arrow-circle-up"></i> Most Bids</div>
+			<div class="text-center statResult2"><?php echo $bid[0]['bidder_name']; ?></div>
+			<div class="text-center sub"><?php echo $bid[0]['count']; ?> BID(S)</div>
+		</div>
+		<div class="span6 stat">
+			<div class="text-center statTitle"><i class="fa fa-arrow-circle-down"></i> Least Bids</div>
+			<div class="text-center statResult2"><?php echo $bid[count($bid)-1]['bidder_name']; ?></div>
+			<div class="text-center sub"><?php echo $bid[count($bid)-1]['count']; ?> BID(S)</div>
 		</div>
 	</div>
 </div>
@@ -644,6 +658,13 @@ input:focus{
 	margin-top:30px;
 	font-weight:bold;
 	font-size:60px;
+}
+
+.statResult2{
+	padding-bottom:20px;
+	margin-top:30px;
+	font-weight:bold;
+	font-size:20px;
 }
 
 .sub{
