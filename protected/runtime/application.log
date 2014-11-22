@@ -514,3 +514,16 @@ Stack trace:
 #15 C:\xampp\htdocs\framework\base\CApplication.php(135): CWebApplication->processRequest()
 #16 C:\xampp\htdocs\procurementhack\index.php(17): CApplication->run()
 #17 {main} REQUEST_URI=/procurementhack/site/contact
+2014/11/22 07:44:10 [error] [php] Undefined variable: echo (C:\xampp\htdocs\procurementhack\protected\models\PhilgepsApi.php:20)
+Stack trace:
+#0 C:\xampp\htdocs\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\framework\web\CController.php(286): SiteController->runAction()
+#2 C:\xampp\htdocs\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#3 C:\xampp\htdocs\framework\web\CWebApplication.php(282): SiteController->run()
+#4 C:\xampp\htdocs\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\htdocs\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\procurementhack\index.php(17): CWebApplication->run()
+REQUEST_URI=/procurementhack/site/index
+in C:\xampp\htdocs\procurementhack\protected\models\PhilgepsApi.php (20)
+in C:\xampp\htdocs\procurementhack\protected\controllers\SiteController.php (33)
+in C:\xampp\htdocs\procurementhack\index.php (17)
