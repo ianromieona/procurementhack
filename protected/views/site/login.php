@@ -1,4 +1,9 @@
 <div class="container">
+<div class="row-fluid">
+	<div class="span6">
+		<img src="<?php echo Yii::app()->request->baseUrl;?>/images/ph-map.png">
+	</div>
+</div>
 <?php
 /* @var $this SiteController */
 /* @var $model LoginForm */
