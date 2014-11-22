@@ -22,9 +22,6 @@
 
 <div id="page">
 	<?php if(Yii::app()->controller->id != "site" && Yii::app()->controller->action->id != "index"){ ?>
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
 	<div id="mainmenu">
 		<?php echo $this->renderPartial('//layouts/header/head');?>
 	</div>

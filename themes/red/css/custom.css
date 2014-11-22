@@ -9,6 +9,14 @@
 	color: gray;
 	letter-spacing: 1.3px;
 }
+.semicontainer {
+	padding:25px;
+}
+.br1{
+	border-left: 1px solid #ccc;
+	padding-left: 20px;
+}
+
 input[type="text"],input[type="password"]{
 	border-radius: 2px;
 	padding: 17px !important;
