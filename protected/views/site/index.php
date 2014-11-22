@@ -1,10 +1,4 @@
-<div class="header" style="position:absolute;opacity:0.3">
-	<div class="row-fulid">
-		<div class="span4 offset4">
-			<input type="text" name="searchField" placeholder="Search for" id="searchFor">
-		</div>
-	</div>
-</div>
+<div class="header" style="position:absolute;opacity:0.5"></div>
 <div id="map_canvas" class="gmaps"></div>
 <style>
 	.gmaps{
