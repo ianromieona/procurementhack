@@ -10,15 +10,17 @@ class ProjectController extends Controller
 		$pdata = PhilgepsApi::listPhilgepsData($data);
 		$item = "Select * from \"daa80cd8-da5d-4b9d-bb6d-217a360ff7c1\" a where ref_id='".$id."'";
 		$idata = PhilgepsApi::listPhilgepsData($item);
-		// $param['pdateFrom'] = '2009-06-10T00:00:00';
-		// $param['pdateTo'] = '2009-06-20T00:00:00';
+		// $param['dateFrom'] = '2014-11-21';
+
+		// $param['dateTo'] = '2014-11-24';
 		// $param['budgetMin'] = 100;
 		// $param['budgetMax'] =101;
 		// $param['location']= "Batangas";
 		// $param['category'] = array('Pest Control Services','Surveying Services');
-		// $param['searchTags'] = array('Publication','Serv');
+		// $param['classification'] = array('Surveys','Survey');
 		// Common::pre(PhilgepsApi::searchWithFilter($param),true);
 		// Common::pre(PhilgepsApi::listPhilgepsData(PhilgepsApi::searchWithFilter($param)),true);
+		// Common::pre(Post::searchPost($param),true);
 		$this->render('view',array('data'=>$pdata[0],'refId'=>$id,'items'=>$idata));
 	}
 
