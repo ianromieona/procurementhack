@@ -1,6 +1,6 @@
 <div id="morphsearch" class="morphsearch">
 	<form class="morphsearch-form" method="POST" action="<?php echo Yii::app()->createAbsoluteUrl('project/search'); ?>">
-		<input class="morphsearch-input" id="searchText" autocomplete="off" type="search" placeholder="Search..."/>
+		<input class="morphsearch-input" name="keyword" id="searchText" autocomplete="off" type="text" placeholder="Search..."/>
 		<input type="hidden" name="location" id="location">
 		<button class="morphsearch-submit" type="submit" value="search"><i class="fa fa-search"></i></button>
 	</form>
@@ -79,7 +79,7 @@ $(document).ready(function(){
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
 								$budget = $resultData[$counter]['approved_budget'];
 								$('.rated').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
-														   +'<div class="infoRated"><br/><small><b>Approved Budget: </b>'+$budget
+														   +'<div class="infoRated"><br/><small><b>Approved Budget: </b> Php'+$budget
 									                       +'<br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
 									                       +'</small></div></div>');
@@ -262,7 +262,7 @@ $(document).ready(function(){
 	color: transparent;
 }
 
-input[type="search"] { /* reset normalize */
+input[type="text"] { /* reset normalize */
 	-webkit-box-sizing: border-box; 
 	box-sizing: border-box;	
 }
@@ -551,17 +551,6 @@ input:focus{
 
 #searchText{
 	color:#333;
-}
-
-.infoRated{
-	background-color:#333;
-	text-align:right;
-	color:#FFFFFF;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	padding-left:0.75em;
-	padding-right:0.75em;
-	padding-bottom:0.75em;
 }
 
 .infoNear{
