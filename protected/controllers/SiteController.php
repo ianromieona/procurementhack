@@ -100,7 +100,6 @@ class SiteController extends Controller
 		if(isset($_POST['Users']) && isset($_POST['loginBtn']))
 		{
 			$model->attributes=$_POST['Users'];
-			$model->password=Common::hashPassword($_POST['Users']['password']);
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
@@ -108,6 +107,7 @@ class SiteController extends Controller
 		if(isset($_POST['Users']) && isset($_POST['registerBtn']))
 		{
 			$model->attributes=$_POST['Users'];
+			$model->password=Common::hashPassword($_POST['Users']['password']);
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->save()){
 				if($model->login()){
