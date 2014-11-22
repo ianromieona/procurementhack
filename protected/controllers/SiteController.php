@@ -29,7 +29,6 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-
 		$this->render('index');
 	}
 
@@ -90,6 +89,9 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		if(!Yii::app()->user->isGuest){
+			$this->redirect(array('site/index'));
+		}
 		$model=new Users('login');
 		$modelr=new Users('register');
 
@@ -107,12 +109,23 @@ class SiteController extends Controller
 		}
 
 		// collect user input data
-		if(isset($_POST['Users']))
+		if(isset($_POST['Users']) && isset($_POST['loginBtn']))
 		{
 			$model->attributes=$_POST['Users'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
+		}
+		if(isset($_POST['Users']) && isset($_POST['registerBtn']))
+		{
+			$model->attributes=$_POST['Users'];
+			$model->password=Common::hashPassword($_POST['Users']['password']);
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->save()){
+				if($model->login()){
+					$this->redirect(array('site/index'));
+				}
+			}
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model,'modelr'=>$modelr));

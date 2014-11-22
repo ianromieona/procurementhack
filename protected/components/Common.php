@@ -5,13 +5,16 @@
 	 */
 	class Common
 	{
-		static function pre($array,$exit){
-			echo "<pre>".print_r($array)."</pre>";
+
+	public static function pre($array,$exit){
+			echo "<pre>";
+			print_r($array);
+			echo "</pre>";
 			if($exit){
 				exit;
 			}
 		}
-		function hashPassword($password){
+	public static function hashPassword($password){
 			return md5($password);
 		}
 	}

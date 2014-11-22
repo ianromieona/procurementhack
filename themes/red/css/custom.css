@@ -2,6 +2,18 @@
 	font-family: "Lato2";
 	font-size: 34px;
 }
+.labels{
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: 100;
+	color: gray;
+	letter-spacing: 1.3px;
+}
+input[type="text"],input[type="password"]{
+	border-radius: 2px;
+	padding: 17px !important;
+	border: 1px solid #E5E5E5;
+}
  @font-face {
   font-family: 'Lato2';
   font-style: normal;
