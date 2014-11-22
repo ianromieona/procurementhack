@@ -14,36 +14,31 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/theme.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<script ></script>
 </head>
 
 <body>
 
 <div id="page">
-
+	<?php if(Yii::app()->controller->id != "site" && Yii::app()->controller->action->id != "index"){ ?>
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
-
 	<div id="mainmenu">
 		<?php echo $this->renderPartial('//layouts/header/head');?>
-	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-
+	</div>
+	<?php } ?>
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-
+	<?php if(Yii::app()->controller->id != "site" && Yii::app()->controller->action->id != "index"){ ?>
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
-
+	<?php } ?>
 </div><!-- page -->
-
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/jquery.js'); ?>
 </body>
 </html>
