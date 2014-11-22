@@ -14,7 +14,13 @@ class ProjectController extends Controller
 	}
 
 	function actionSearch(){
-		$key = ($_POST['keyword'])?$_POST['keyword']:$_GET['keyword'];
+		if(isset($_POST['keyword'])){
+			$key = $_POST['keyword'];
+		}elseif(isset($_GET['keyword'])){
+			$key = $_GET['keyword'];
+		}else{
+			$key = "";
+		}
 		$data = "Select ref_id, tender_title, description, publish_date, closing_date, location from \"baccd784-45a2-4c0c-82a6-61694cd68c9d\" b LEFT JOIN \"116b0812-23b4-4a92-afcc-1030a0433108\" l ON b.ref_id = l.refid WHERE b.tender_title LIKE '%".$key."%' order by b.publish_date desc limit 10 offset 0";
 		$pdata = PhilgepsApi::listPhilgepsData($data);
 		$this->render('search',array('data'=>$pdata,'key'=>$key));
