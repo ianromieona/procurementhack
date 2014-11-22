@@ -1,4 +1,6 @@
 <div class="container">
+<br>
+<br>
 	<div class="row-fluid">
 		<div class="span6">
 			<center>
@@ -19,6 +21,7 @@
 				<?php $form=$this->beginWidget('CActiveForm', array(
 					'id'=>'login-form',
 					'enableClientValidation'=>true,
+					'enableAjaxValidation'=>true,
 					'clientOptions'=>array(
 						'validateOnSubmit'=>true,
 					),
@@ -57,6 +60,7 @@
 				<div class="form">
 				<?php $form=$this->beginWidget('CActiveForm', array(
 					'id'=>'register-form',
+					'enableAjaxValidation'=>true,
 					'enableClientValidation'=>true,
 					'clientOptions'=>array(
 						'validateOnSubmit'=>true,
@@ -115,12 +119,16 @@
 <script>
 $(document).ready(function(){
 	$('.registerBtn').on('click',function(){
-		$('.loginpanel').slideUp('fast');
+		$('.loginpanel').slideUp('slow');
 		$('.registerpanel').slideDown('fast');
+		$('img').fadeOut(function(){ $(this).attr('src','<?php echo Yii::app()->request->baseUrl;?>/images/ph-map2.png').fadeIn('fast'); });
 	})
 	$('.loginBtn').on('click',function(){
-		$('.loginpanel').slideDown('fast');
+		$('.loginpanel').slideDown('slow');
 		$('.registerpanel').slideUp('fast');
+		$('img').fadeOut(function(){ $(this).attr('src','<?php echo Yii::app()->request->baseUrl;?>/images/ph-map.png').fadeIn('fast'); });
+
+
 	})
 })
 </script>
