@@ -29,7 +29,8 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-
+		$q = "Select ref_id, tender_title, description, publish_date, closing_date, location from \"baccd784-45a2-4c0c-82a6-61694cd68c9d\" b LEFT JOIN \"116b0812-23b4-4a92-afcc-1030a0433108\" l ON b.ref_id = l.refid WHERE l.location LIKE '%B%' AND tender_status='In-Preparation' order by b.publish_date desc limit 15 offset 0";
+		Common::pre(PhilgepsApi::listPhilgepsData($q),true);
 		$this->render('index');
 	}
 
