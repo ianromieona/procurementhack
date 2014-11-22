@@ -6,7 +6,9 @@
 	class Common
 	{
 		function pre($array,$exit){
-			echo "<pre>".print_r($array)."</pre>";
+			echo "<pre>";
+			print_r($array);
+			echo "</pre>";
 			if($exit){
 				exit;
 			}
