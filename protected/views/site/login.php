@@ -30,6 +30,9 @@
 				)); ?>
 
 					<p class="note">Fields with <span class="required">*</span> are required.</p>
+					<?php if(Yii::app()->user->hasFlash('alert')): ?>
+						<label class="text-error">  <?php echo Yii::app()->user->getFlash('alert'); ?></label>
+					<?php endif; ?>
 					<div class="row-fluid">
 						<div class="span6">
 							<?php echo $form->labelEx($model,'username',array('class'=>'labels')); ?>
