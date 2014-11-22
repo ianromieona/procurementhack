@@ -79,11 +79,18 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
 		$model=new Users('login');
+		$modelr=new Users('register');
 
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
 			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+		{
+			echo CActiveForm::validate($modelr);
 			Yii::app()->end();
 		}
 
@@ -96,7 +103,7 @@ class SiteController extends Controller
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('login',array('model'=>$model,'modelr'=>$modelr));
 	}
 
 	/**

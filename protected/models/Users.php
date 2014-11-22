@@ -35,7 +35,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			// array('user_firstname, user_lastname, address, age, password, username', 'required'),
+			array('user_firstname, user_lastname,email, password, username', 'required','on'=>'register'),
 			array('username, password', 'required' ,'on'=>'login'),
 			array('age', 'numerical', 'integerOnly'=>true),
 			array('user_firstname, user_lastname, username', 'length', 'max'=>200),
@@ -63,12 +63,13 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_firstname' => 'User Firstname',
-			'user_lastname' => 'User Lastname',
+			'user_firstname' => 'Firstname',
+			'user_lastname' => 'Lastname',
 			'address' => 'Address',
 			'age' => 'Age',
 			'password' => 'Password',
 			'username' => 'Username',
+			'email' => 'Email',
 		);
 	}
 
