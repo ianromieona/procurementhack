@@ -6,7 +6,8 @@
 		</div>
 	</div>
 </div>
-<div class="semicontainer">
+<br>
+<div class="container">
 	<div class="row-fluid">
 		<div class="span6">
 			<div class="row-fluid">
@@ -49,7 +50,7 @@
 	<hr>
 	</div>
 </div>
-<div class="semicontainer">
+<div class="container">
 	<div class="row-fluid">
 		<div class="span6">
 			<div class="row-fluid">
