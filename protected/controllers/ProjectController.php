@@ -12,5 +12,9 @@ class ProjectController extends Controller
 		$idata = PhilgepsApi::listPhilgepsData($item);
 		$this->render('view',array('data'=>$pdata[0],'refId'=>$id,'items'=>$idata));
 	}
+
+	function actionSearch(){
+		Common::pre($_POST,true);
+	}
 }
 ?>
