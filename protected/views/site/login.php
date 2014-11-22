@@ -101,13 +101,13 @@
 							<?php echo $form->error($modelr,'user_firstname'); ?>
 						</div>
 					</div>
-					<div class="row-fluid">
+					<!-- <div class="row-fluid">
 						<div class="span6">
 							<?php echo $form->labelEx($modelr,'user_lastname',array('class'=>'labels')); ?>
 							<?php echo $form->textField($modelr,'user_lastname',array('class'=>'input-block-level')); ?>
 							<?php echo $form->error($modelr,'user_lastname'); ?>
 						</div>
-					</div>
+					</div> -->
 					<div class="row-fluid">
 						<div class="span6">
 							<?php echo CHtml::submitButton('REGISTER',array('name'=>'registerBtn','class'=>'pull-right btn btn-info')); ?>
