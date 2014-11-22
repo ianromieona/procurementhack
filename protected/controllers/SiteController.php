@@ -33,6 +33,18 @@ class SiteController extends Controller
 	}
 
 	/**
+	 * This is the default 'index' action that is invoked
+	 * when an action is not explicitly requested by users.
+	 */
+	public function actionIndex2()
+	{
+		// renders the view file 'protected/views/site/index.php'
+		// using the default layout 'protected/views/layouts/main.php'
+
+		$this->render('index2');
+	}
+
+	/**
 	 * This is the action to handle external exceptions.
 	 */
 	public function actionError()
@@ -101,15 +113,21 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['Users'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($model->validate() && $model->login()){
 				$this->redirect(Yii::app()->user->returnUrl);
+			}else{
+				Yii::app()->user->setFlash('alert','Invalid username/password');
+			}
 		}
 		if(isset($_POST['Users']) && isset($_POST['registerBtn']))
 		{
+			$modelr->attributes=$_POST['Users'];
 			$model->attributes=$_POST['Users'];
-			$model->password=Common::hashPassword($_POST['Users']['password']);
+			$modelr->password=Common::hashPassword($_POST['Users']['password']);
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->save(false)){
+
+			if($modelr->validate() && $modelr->save(false)){
+
 				if($model->login()){
 					$this->redirect(array('site/index'));
 				}

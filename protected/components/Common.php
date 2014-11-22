@@ -5,7 +5,8 @@
 	 */
 	class Common
 	{
-		function pre($array,$exit){
+
+	public static function pre($array,$exit=false){
 			echo "<pre>";
 			print_r($array);
 			echo "</pre>";
@@ -13,7 +14,7 @@
 				exit;
 			}
 		}
-		function hashPassword($password){
+	public static function hashPassword($password){
 			return md5($password);
 		}
 	}
