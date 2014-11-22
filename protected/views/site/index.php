@@ -1,38 +1,510 @@
-<div class="searchPanel header">
-	<input type="text" name="searchField" class="bigSearch">
-</div>
-<div id="banner">
-	<div class="container intro_wrapper">
-	<div class="inner_content">
-	<h1>Inspiration</h1>
-	<h1 class="title">Dribbble Photostream</h1>
-	
-	<h1 class="intro">
-	Web design is the creation of <span class="hue">digital environments</span>, that <span>facilitate</span> and encourage human activity; 
-	<span>reflect </span> or adapt to individual voices and content. - Jeffrey Zeldman</h1>
-	</div>
+<div id="morphsearch" class="morphsearch">
+	<form class="morphsearch-form">
+		<input class="morphsearch-input" type="search" placeholder="Search..."/>
+		<button class="morphsearch-submit" type="submit">Search</button>
+	</form>
+	<div class="morphsearch-content">
+		<div class="dummy-column">
+			<h2>Projects Nearby</h2>
+			<a class="dummy-media-object" href="http://twitter.com/SaraSoueidan">
+				<img class="round" src="http://0.gravatar.com/avatar/81b58502541f9445253f30497e53c280?s=50&d=identicon&r=G" alt="Sara Soueidan"/>
+				<h3>Sara Soueidan</h3>
+			</a>
+			<a class="dummy-media-object" href="http://twitter.com/rachsmithtweets">
+				<img class="round" src="http://0.gravatar.com/avatar/48959f453dffdb6236f4b33eb8e9f4b7?s=50&d=identicon&r=G" alt="Rachel Smith"/>
+				<h3>Rachel Smith</h3>
+			</a>
+			<a class="dummy-media-object" href="http://www.twitter.com/peterfinlan">
+				<img class="round" src="http://0.gravatar.com/avatar/06458359cb9e370d7c15bf6329e5facb?s=50&d=identicon&r=G" alt="Peter Finlan"/>
+				<h3>Peter Finlan</h3>
+			</a>
+			<a class="dummy-media-object" href="http://www.twitter.com/pcridesagain">
+				<img class="round" src="http://1.gravatar.com/avatar/db7700c89ae12f7d98827642b30c879f?s=50&d=identicon&r=G" alt="Patrick Cox"/>
+				<h3>Patrick Cox</h3>
+			</a>
+			<a class="dummy-media-object" href="https://twitter.com/twholman">
+				<img class="round" src="http://0.gravatar.com/avatar/cb947f0ebdde8d0f973741b366a51ed6?s=50&d=identicon&r=G" alt="Tim Holman"/>
+				<h3>Tim Holman</h3>
+			</a>
+			<a class="dummy-media-object" href="https://twitter.com/shaund0na">
+				<img class="round" src="http://1.gravatar.com/avatar/9bc7250110c667cd35c0826059b81b75?s=50&d=identicon&r=G" alt="Shaun Dona"/>
+				<h3>Shaun Dona</h3>
+			</a>
 		</div>
-			</div>
-<div class="listContainer">
-	<div class="row-fluid">
-		<div class="span4">
+		<div class="dummy-column">
+			<h2>Top Budgeted</h2>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/08/05/page-preloading-effect/">
+				<img src="img/thumbs/PagePreloadingEffect.png" alt="PagePreloadingEffect"/>
+				<h3>Page Preloading Effect</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/05/28/arrow-navigation-styles/">
+				<img src="img/thumbs/ArrowNavigationStyles.png" alt="ArrowNavigationStyles"/>
+				<h3>Arrow Navigation Styles</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/06/19/ideas-for-subtle-hover-effects/">
+				<img src="img/thumbs/HoverEffectsIdeasNew.png" alt="HoverEffectsIdeasNew"/>
+				<h3>Ideas for Subtle Hover Effects</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/07/14/freebie-halcyon-days-one-page-website-template/">
+				<img src="img/thumbs/FreebieHalcyonDays.png" alt="FreebieHalcyonDays"/>
+				<h3>Halcyon Days Template</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/05/22/inspiration-for-article-intro-effects/">
+				<img src="img/thumbs/ArticleIntroEffects.png" alt="ArticleIntroEffects"/>
+				<h3>Inspiration for Article Intro Effects</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/06/26/draggable-dual-view-slideshow/">
+				<img src="img/thumbs/DraggableDualViewSlideshow.png" alt="DraggableDualViewSlideshow"/>
+				<h3>Draggable Dual-View Slideshow</h3>
+			</a>
 		</div>
-		<div class="span4">
+		<div class="dummy-column">
+			<h2>Most Recent</h2>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/10/07/tooltip-styles-inspiration/">
+				<img src="img/thumbs/TooltipStylesInspiration.png" alt="TooltipStylesInspiration"/>
+				<h3>Tooltip Styles Inspiration</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/09/23/animated-background-headers/">
+				<img src="img/thumbs/AnimatedHeaderBackgrounds.png" alt="AnimatedHeaderBackgrounds"/>
+				<h3>Animated Background Headers</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/">
+				<img src="img/thumbs/OffCanvas.png" alt="OffCanvas"/>
+				<h3>Off-Canvas Menu Effects</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/09/02/tab-styles-inspiration/">
+				<img src="img/thumbs/TabStyles.png" alt="TabStyles"/>
+				<h3>Tab Styles Inspiration</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/">
+				<img src="img/thumbs/ResponsiveSVGs.png" alt="ResponsiveSVGs"/>
+				<h3>Make SVGs Responsive with CSS</h3>
+			</a>
+			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/">
+				<img src="img/thumbs/NotificationStyles.png" alt="NotificationStyles"/>
+				<h3>Notification Styles Inspiration</h3>
+			</a>
 		</div>
-		<div class="span4">
-		</div>
-	</div>
-</div>
+	</div><!-- /morphsearch-content -->
+	<span class="morphsearch-close"></span>
+</div><!-- /morphsearch -->
+<div class="overlay"></div>
+</div><!-- /container -->
+<script>
+(function() {
+	var morphSearch = document.getElementById( 'morphsearch' ),
+		input = morphSearch.querySelector( 'input.morphsearch-input' ),
+		ctrlClose = morphSearch.querySelector( 'span.morphsearch-close' ),
+		isOpen = isAnimating = false,
+		// show/hide search area
+		toggleSearch = function(evt) {
+			// return if open and the input gets focused
+			if( evt.type.toLowerCase() === 'focus' && isOpen ) return false;
+
+			var offsets = morphsearch.getBoundingClientRect();
+			if( isOpen ) {
+				classie.remove( morphSearch, 'open' );
+				$('.morphsearch-input').removeClass('active');
+				// trick to hide input text once the search overlay closes 
+				// todo: hardcoded times, should be done after transition ends
+				if( input.value !== '' ) {
+					setTimeout(function() {
+						classie.add( morphSearch, 'hideInput' );
+						setTimeout(function() {
+							classie.remove( morphSearch, 'hideInput' );
+							input.value = '';
+						}, 300 );
+					}, 500);
+				}
+				
+				input.blur();
+			}
+			else {
+				classie.add( morphSearch, 'open' );
+				$('.morphsearch-input').addClass('active');
+			}
+			isOpen = !isOpen;
+		};
+
+	// events
+	input.addEventListener( 'focus', toggleSearch );
+	ctrlClose.addEventListener( 'click', toggleSearch );
+	// esc key closes search overlay
+	// keyboard navigation events
+	document.addEventListener( 'keydown', function( ev ) {
+		var keyCode = ev.keyCode || ev.which;
+		if( keyCode === 27 && isOpen ) {
+			toggleSearch(ev);
+		}
+	} );
+
+
+	/***** for demo purposes only: don't allow to submit the form *****/
+	morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
+})();
+</script>
 <style>
-	.listContainer{
-		margin-top:10px;
-		margin-left:20px;
-		margin-right:20px;
-		padding:5px;
+.morphsearch {
+	width: 200px;
+	min-height: 40px;
+	background: #f1f1f1;
+	position: absolute;
+	z-index: 10000;
+	top: 30px;
+	right: 50px;
+	-webkit-transform-origin: 100% 0;
+	transform-origin: 100% 0;
+	-webkit-transition-property: min-height, width, top, right;
+	transition-property: min-height, width, top, right;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.morphsearch.open {
+	width: 100%;
+	min-height: 100%;
+	top: 0px;
+	right: 0px;
+}
+
+.morphsearch-form {
+	width: 100%;
+	height: 40px;
+	margin: 0 auto;
+	position: relative;
+	-webkit-transition-property: width, height, -webkit-transform;
+	transition-property: width, height, transform;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.morphsearch.open .morphsearch-form {
+	width: 80%;
+	height: 160px;
+	-webkit-transform: translate3d(0,3em,0);
+	transform: translate3d(0,3em,0);
+}
+
+.morphsearch-input {
+	width: 100%;
+	height: 60px !important;
+	padding: 0 10% 0 10px;
+	font-weight: 700;
+	border: transparent;
+	background: transparent;
+	font-size: 20px !important;
+	color: #ec5a62;
+	-webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+	transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+}
+
+.morphsearch-input::-ms-clear { /* remove cross in IE */
+    display: none;
+}
+
+.morphsearch.hideInput .morphsearch-input {
+	color: transparent;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+/* placeholder */
+.morphsearch-input::-webkit-input-placeholder {
+	color: #c2c2c2;
+}
+
+.morphsearch-input:-moz-placeholder {
+	color: #c2c2c2;
+}
+
+.morphsearch-input::-moz-placeholder {
+	color: #c2c2c2;
+}
+
+.morphsearch-input:-ms-input-placeholder {
+	color: #c2c2c2;
+}
+
+/* hide placeholder when active in Chrome */
+.gn-search:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+input[type="search"] { /* reset normalize */
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;	
+}
+
+.morphsearch-input:focus,
+.morphsearch-submit:focus {
+	outline: none;
+}
+
+.morphsearch-submit {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	text-indent: 100px;
+	overflow: hidden;
+	right: 0;
+	top: 50%;
+	background: transparent url(../img/magnifier.svg) no-repeat center center;
+	background-size: 100%;
+	border: none;
+	pointer-events: none;
+	transform-origin: 50% 50%;
+	opacity: 0;
+	-webkit-transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
+	transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
+}
+
+.morphsearch.open .morphsearch-submit {
+	pointer-events: auto;
+	opacity: 1;
+	-webkit-transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
+	transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transition-delay: 0.5s;
+	transition-delay: 0.5s;
+}
+
+.morphsearch-close {
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	overflow: hidden;
+	text-indent: 100%;
+	cursor: pointer;
+	pointer-events: none;
+	opacity: 0;
+	-webkit-transform: scale3d(0,0,1);
+	transform: scale3d(0,0,1);
+}
+
+.morphsearch.open .morphsearch-close {
+	opacity: 1;
+	pointer-events: auto;
+	-webkit-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transition-delay: 0.5s;
+	transition-delay: 0.5s;
+}
+
+.morphsearch-close::before,
+.morphsearch-close::after {
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	top: 0;
+	left: 50%;
+	border-radius: 3px;
+	opacity: 0.2;
+	background: #000;
+}
+
+.morphsearch-close:hover.morphsearch-close::before,
+.morphsearch-close:hover.morphsearch-close::after {
+	opacity: 1;
+}
+
+.morphsearch-close::before {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.morphsearch-close::after {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.morphsearch-content {
+	color: #333;
+	margin-top: 4.5em;
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+	padding: 0 10.5%;
+	background: #f1f1f1;
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.morphsearch.open .morphsearch-content {
+	opacity: 1;
+	height: auto;
+	overflow: visible; /* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
+	pointer-events: auto;
+	-webkit-transition: opacity 0.3s 0.5s;
+	transition: opacity 0.3s 0.5s;
+}
+
+.dummy-column {
+	width: 30%;
+	padding: 0 0 6em;
+	float: left;
+	opacity: 0;
+	-webkit-transform: translate3d(0,100px,0);
+	transform: translateY(100px);
+	-webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+	transition: transform 0.5s, opacity 0.5s;
+}
+
+.morphsearch.open .dummy-column:first-child {
+	-webkit-transition-delay: 0.4s;
+	transition-delay: 0.4s;
+}
+
+.morphsearch.open .dummy-column:nth-child(2) {
+	-webkit-transition-delay: 0.45s;
+	transition-delay: 0.45s;
+}
+
+.morphsearch.open .dummy-column:nth-child(3) {
+	-webkit-transition-delay: 0.5s;
+	transition-delay: 0.5s;
+}
+
+.morphsearch.open .dummy-column {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+.dummy-column:nth-child(2) {
+	margin: 0 5%;
+}
+
+.dummy-column h2 {
+	font-size: 1em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 800;
+	color: #c2c2c2;
+	padding: 0.5em 0;
+}
+
+.round {
+	border-radius: 50%;
+}
+
+.dummy-media-object {
+	padding: 0.75em;
+	display: block;
+	margin: 0.3em 0;
+	cursor: pointer;
+	border-radius: 5px;
+	background: rgba(118,117,128,0.05);
+}
+
+.dummy-media-object:hover,
+.dummy-media-object:focus {
+	background: rgba(118,117,128,0.1);
+}
+
+.dummy-media-object img {
+	display: inline-block;
+	width: 50px;	
+	margin: 0 10px 0 0;
+	vertical-align: middle;
+}
+
+.dummy-media-object h3 {
+	vertical-align: middle;
+	font-size: 0.85em;
+	display: inline-block;
+	font-weight: 700;
+	margin: 0 0 0 0;
+	width: calc(100% - 70px);
+	color: rgba(145,145,145,0.7);
+}
+
+.dummy-media-object:hover h3 {
+	color: rgba(236,90,98,1);
+}
+
+/* Overlay */
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.morphsearch.open ~ .overlay {
+	opacity: 1;
+}
+
+@media screen and (max-width: 53.125em) {
+	.morphsearch-input {
+		padding: 0 25% 0 10px;
 	}
-	.bigSearch{
-		height:40px !important;
-		margin-top:18px;
-		float:right;
+	.morphsearch.open .morphsearch-input {
+		font-size: 2em;
 	}
+	.dummy-column {
+		float: none;
+		width: auto;
+		padding: 0 0 2em;
+	}
+	.dummy-column:nth-child(2) {
+		margin: 0;
+	}
+	.morphsearch.open .morphsearch-submit {
+		-webkit-transform: translate3d(0,-50%,0) scale3d(0.5,0.5,1);
+		transform: translate3d(0,-50%,0) scale3d(0.5,0.5,1);
+	}
+}
+
+@media screen and (max-width: 60.625em) {
+	.morphsearch {
+		width: 80%;
+		top: 10%;
+		right: 10%;
+	}
+}
+
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons/codropsicons.eot');
+	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+}
+
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+.morphsearch-form > .active{
+	background:transparent;
+	border:none;
+	height:90px !important;
+	line-height:60px;
+	font-size:60px !important;
+}
+input:focus{
+	outline: none !important;
+	box-shadow:none !important;
+}
 </style>
