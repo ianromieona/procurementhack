@@ -7,7 +7,6 @@
 class PhilgepsApi extends CFormModel
 {
 	public static function listPhilgepsData($query){
-
 		// guide for the table variable
 		// award 		 =	539525df-fc9a-4adf-b33d-04747e95f120
 		// bidders list	 = 	6427affb-e841-45b8-b0dc-ed267498724a
@@ -26,7 +25,7 @@ class PhilgepsApi extends CFormModel
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 		$result = json_decode(curl_exec($ch),TRUE);
 		curl_close($ch);
-
+		
 		if($result['success']){
 			return $result['result']['records'];
 		}

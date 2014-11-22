@@ -125,7 +125,9 @@ class SiteController extends Controller
 			$model->attributes=$_POST['Users'];
 			$modelr->password=Common::hashPassword($_POST['Users']['password']);
 			// validate user input and redirect to the previous page if valid
-			if($modelr->validate() && $modelr->save()){
+
+			if($modelr->validate() && $modelr->save(false)){
+
 				if($model->login()){
 					$this->redirect(array('site/index'));
 				}
