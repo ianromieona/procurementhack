@@ -1,0 +1,1 @@
+<a href=" http://developer.globelabs.com.ph/dialog/oauth?app_id=<?php echo Yii::app()->params['appId']; ?>"> Go To Globe </a>
