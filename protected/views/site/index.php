@@ -1,6 +1,7 @@
 <div id="morphsearch" class="morphsearch">
 	<form class="morphsearch-form">
 		<input class="morphsearch-input" type="search" placeholder="Search..."/>
+		<input type="hidden" name="location" id="location">
 		<button class="morphsearch-submit" type="submit">Search</button>
 	</form>
 	<div class="morphsearch-content">
@@ -33,65 +34,46 @@
 		</div>
 		<div class="dummy-column">
 			<h2>Top Budgeted</h2>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/08/05/page-preloading-effect/">
-				<img src="img/thumbs/PagePreloadingEffect.png" alt="PagePreloadingEffect"/>
-				<h3>Page Preloading Effect</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/05/28/arrow-navigation-styles/">
-				<img src="img/thumbs/ArrowNavigationStyles.png" alt="ArrowNavigationStyles"/>
-				<h3>Arrow Navigation Styles</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/06/19/ideas-for-subtle-hover-effects/">
-				<img src="img/thumbs/HoverEffectsIdeasNew.png" alt="HoverEffectsIdeasNew"/>
-				<h3>Ideas for Subtle Hover Effects</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/07/14/freebie-halcyon-days-one-page-website-template/">
-				<img src="img/thumbs/FreebieHalcyonDays.png" alt="FreebieHalcyonDays"/>
-				<h3>Halcyon Days Template</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/05/22/inspiration-for-article-intro-effects/">
-				<img src="img/thumbs/ArticleIntroEffects.png" alt="ArticleIntroEffects"/>
-				<h3>Inspiration for Article Intro Effects</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/06/26/draggable-dual-view-slideshow/">
-				<img src="img/thumbs/DraggableDualViewSlideshow.png" alt="DraggableDualViewSlideshow"/>
-				<h3>Draggable Dual-View Slideshow</h3>
-			</a>
 		</div>
 		<div class="dummy-column">
 			<h2>Most Recent</h2>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/10/07/tooltip-styles-inspiration/">
-				<img src="img/thumbs/TooltipStylesInspiration.png" alt="TooltipStylesInspiration"/>
-				<h3>Tooltip Styles Inspiration</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/09/23/animated-background-headers/">
-				<img src="img/thumbs/AnimatedHeaderBackgrounds.png" alt="AnimatedHeaderBackgrounds"/>
-				<h3>Animated Background Headers</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/">
-				<img src="img/thumbs/OffCanvas.png" alt="OffCanvas"/>
-				<h3>Off-Canvas Menu Effects</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/09/02/tab-styles-inspiration/">
-				<img src="img/thumbs/TabStyles.png" alt="TabStyles"/>
-				<h3>Tab Styles Inspiration</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/">
-				<img src="img/thumbs/ResponsiveSVGs.png" alt="ResponsiveSVGs"/>
-				<h3>Make SVGs Responsive with CSS</h3>
-			</a>
-			<a class="dummy-media-object" href="http://tympanus.net/codrops/2014/07/23/notification-styles-inspiration/">
-				<img src="img/thumbs/NotificationStyles.png" alt="NotificationStyles"/>
-				<h3>Notification Styles Inspiration</h3>
-			</a>
 		</div>
 	</div><!-- /morphsearch-content -->
 	<span class="morphsearch-close"></span>
 </div><!-- /morphsearch -->
 <div class="overlay"></div>
 </div><!-- /container -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 <script>
-(function() {
+$(document).ready(function(){
+	//get location
+	navigator.geolocation.getCurrentPosition(function(position) {
+		var pos = new google.maps.LatLng(position.coords.latitude,
+		                             position.coords.longitude);
+		$lat = position.coords.latitude;
+		$lng = position.coords.longitude;
+		$.ajax({
+			url:"https://maps.googleapis.com/maps/api/geocode/json?latlng="+$lat+","+$lng,
+			type:'GET',
+			success:function(result){
+				$('#location').val(result['results']['2']['address_components']['0']['long_name']);
+
+				//get data for projects nearby
+				$location = $('#location').val();
+				$url = "<?php echo Yii::app()->createAbsoluteUrl('api/callData'); ?>";
+				$query = 'SELECT * FROM "116b0812-23b4-4a92-afcc-1030a0433108" WHERE location = "'+$location+'"';
+				$.ajax({
+					url:$url+"?query="+$query,
+					success:function(result2){
+						console.log(result2);
+					}
+				});
+			}
+		});
+	}, function() {
+	    alert('Map not loaded.');
+	});
+
 	var morphSearch = document.getElementById( 'morphsearch' ),
 		input = morphSearch.querySelector( 'input.morphsearch-input' ),
 		ctrlClose = morphSearch.querySelector( 'span.morphsearch-close' ),
@@ -138,10 +120,8 @@
 		}
 	} );
 
-
-	/***** for demo purposes only: don't allow to submit the form *****/
 	morphSearch.querySelector( 'button[type="submit"]' ).addEventListener( 'click', function(ev) { ev.preventDefault(); } );
-})();
+});
 </script>
 <style>
 .morphsearch {
@@ -252,7 +232,6 @@ input[type="search"] { /* reset normalize */
 	overflow: hidden;
 	right: 0;
 	top: 50%;
-	background: transparent url(../img/magnifier.svg) no-repeat center center;
 	background-size: 100%;
 	border: none;
 	pointer-events: none;
