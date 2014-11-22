@@ -6,7 +6,7 @@
 	class Common
 	{
 
-	public static function pre($array,$exit){
+	public static function pre($array,$exit=false){
 			echo "<pre>";
 			print_r($array);
 			echo "</pre>";
