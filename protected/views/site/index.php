@@ -26,7 +26,7 @@
 		</div>
 	</div>
 </div>
-<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('sit/login'); ?>">LOGIN</a></div>
+<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>">LOGIN</a></div>
 <div class="container wrapper analytics">
 	<?php if(Yii::app()->user->hasFlash('alert')): ?>
 		<div class="alert alert-info">  <?php echo Yii::app()->user->getFlash('alert'); ?></div>
