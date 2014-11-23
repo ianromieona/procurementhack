@@ -29,8 +29,9 @@
 <?php if(Yii::app()->user->isGuest){ ?>
 <div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>">LOGIN</a></div>
 <?php }else{ ?>
-<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('user/index'); ?>">MY PROFILE</a></div>
+
 <div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/logout'); ?>">LOGOUT</a></div>
+<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('user/index'); ?>">MY PROFILE</a></div>
 <?php } ?>
 <div class="container wrapper analytics">
 	<?php if(Yii::app()->user->hasFlash('alert')): ?>
