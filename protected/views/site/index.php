@@ -22,11 +22,15 @@
 <div id="banner">
 	<div class="container intro_wrapper">
 		<div class="inner_content">
-			<div class="pad30"></div>
+			<a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>"><span class="brand">TipBiz<br/><small style="padding-left:55px;color:#CC0000;font-weight:600">Be Aware</small></span></a>
 		</div>
 	</div>
 </div>
+<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>">LOGIN</a></div>
 <div class="container wrapper analytics">
+	<?php if(Yii::app()->user->hasFlash('alert')): ?>
+		<div class="alert alert-info">  <?php echo Yii::app()->user->getFlash('alert'); ?></div>
+	<?php endif; ?>
 	<div class="pad30"></div>
 	<h1 class="title">Organization Analysis</h1>
 	<div class="row-fluid">
@@ -109,7 +113,7 @@ $(document).ready(function(){
 							for($counter = 0; $counter < $resultData.length; $counter++){
 								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
-								$('.nearby').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+								$('.nearby').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoNear"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
 									                       +'</small></div></div>');
@@ -134,7 +138,7 @@ $(document).ready(function(){
 								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
 								$budget = $resultData[$counter]['approved_budget'];
-								$('.rated').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+								$('.rated').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoRated"><br/><small><b>Approved Budget: </b> Php'+$budget
 									                       +'<br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
@@ -159,7 +163,7 @@ $(document).ready(function(){
 							for($counter = 0; $counter < $resultData.length; $counter++){
 								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
-								$('.recent').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+								$('.recent').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoRecent"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
 									                       +'</small></div></div>');
@@ -669,5 +673,28 @@ input:focus{
 #loc2{ color:#028E9B; }
 #bid1{ color:#530FAD; }
 #bid2{ color:#9FEE00; }
+
+.brand{
+	color:#FFFFFF;
+	font-size:40px;
+}
+
+.loginLink{
+	width:250px;
+	text-align:center;
+	padding:10px;
+	background-color:#333333;
+	float:right;
+	font-size:15px;
+	font-weight:bold;
+	margin-right:20px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	border-top:2px solid #57595B;
+}
+
+.loginLink > a{
+	color:#FFFFFF;
+}
 
 </style>

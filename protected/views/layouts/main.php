@@ -43,10 +43,10 @@
 Yii::app()->clientScript->registerCoreScript('jquery');
 Yii::app()->clientScript->registerCoreScript('jquery.ui');
 ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/bootstrap.min.js'); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/classie.js'); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/tagmanager/bootstrap-tagmanager.js'); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/typeahead.js'); ?>
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/bootstrap.min.js'); ?>
 
 </body>
 </html>
