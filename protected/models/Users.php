@@ -167,7 +167,7 @@ class Users extends CActiveRecord
 			$filter->tags = $tags;
 			$filter->classification = $params['classification'];
 			$filter->save(false);
-			$cat2 = explode(",", $cat)
+			$cat2 = explode(",", $cat);
 			foreach($cat2 as $a=>$b){
 				$c = new Categories;
 				$c->category_name = $b;
