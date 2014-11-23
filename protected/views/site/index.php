@@ -109,7 +109,7 @@ $(document).ready(function(){
 							for($counter = 0; $counter < $resultData.length; $counter++){
 								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
-								$('.nearby').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+								$('.nearby').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoNear"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
 									                       +'</small></div></div>');
@@ -134,7 +134,7 @@ $(document).ready(function(){
 								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
 								$budget = $resultData[$counter]['approved_budget'];
-								$('.rated').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+								$('.rated').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoRated"><br/><small><b>Approved Budget: </b> Php'+$budget
 									                       +'<br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
@@ -159,7 +159,7 @@ $(document).ready(function(){
 							for($counter = 0; $counter < $resultData.length; $counter++){
 								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
-								$('.recent').append('<div class="dummy-media-object"><a href="project/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
+								$('.recent').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoRecent"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
 									                       +'</small><br/><small><b>Closing Date: </b>'+$resultData[$counter]['closing_date']
 									                       +'</small></div></div>');
