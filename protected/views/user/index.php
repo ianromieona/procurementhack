@@ -24,7 +24,7 @@
 					<input type="text" name="budget" class="span12" placeholder="Budget Range" value="<?php echo $filters->approved_budget; ?>"><br>
 					<input type="text" name="tags" placeholder="Tags" class="tm-input span3"/><br>
 					<input type="text" name="classification" class="span12" placeholder="Classification" value="<?php echo $filters->classification; ?>"><br>
-					<div class="amp"><input type="text" name="cat" placeholder="Categories" class="cat-input span4"/></div><br>
+					<input type="text" name="cat" placeholder="Categories" class="cat-input span4"/><br>
 					<input type="submit" name="submit" value="Update" class="btn btn-danger pull-right"><span class="btn btn-danger pull-right canceleditProfile">Cancel</span>
 				</form>
 			</div>

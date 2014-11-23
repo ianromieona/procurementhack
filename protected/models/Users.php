@@ -179,7 +179,9 @@ class Users extends CActiveRecord
 			}
 			$getcat = Categories::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id));
 			if($getcat){
-				$getcat->delete();
+				foreach($getcat as $aw=>$aw2){
+					Categories::model()->findByPk($aw2['id'])->delete();
+				}
 			}
 			$cat2 = explode("|", $cat);
 			foreach($cat2 as $a=>$b){

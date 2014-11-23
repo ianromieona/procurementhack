@@ -12,7 +12,7 @@ class UserController extends Controller
 		$cat = Categories::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id));
 		if(isset($_POST['submit'])){
 			Users::userEdit($_POST['User'],$_POST['budget'],$_POST['classification'],$_POST['hidden-tags'],$_POST['hidden-cat']);
-			$this->redirect('user/index');
+			$this->redirect(array('user/index'));
 		}
 
 		$this->render('index',array('user'=>$user,'filters'=>$filters,'cat'=>$cat));
