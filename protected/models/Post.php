@@ -115,8 +115,16 @@ class Post extends CActiveRecord
 	public static function searchPost($param){
 		$query = Yii::app()->db->createCommand()->select('*')->from('post');
 		$has = false;
-		if(isset($param['ref_id'])){
-			$query->where('ref_id=:id',array(':id'=>$param['ref_id']));
+		$loop = false;
+		if(isset($param['tags'])){
+			foreach ($param['tags'] as $value) {
+				if($loop){
+					$query->andWhere("ref_id like '%:id%' and tender_title like '%:id%'",array(':id'=>$value));
+				}else{
+					$query->where("ref_id like '%:id%' and tender_title like '%:id%'",array(':id'=>$value));
+					$loop=true
+				}
+			}
 			$has = true;
 		}
 		if(isset($param['location'])){
@@ -124,14 +132,6 @@ class Post extends CActiveRecord
 				$query->andWhere('location= :location',array(':location'=>$param['location']));
 			}else{
 				$query->where('location= :location',array(':location'=>$param['location']));
-			}
-			$has = true;
-		}
-		if(isset($param['tender_title'])){
-			if($has){
-				$query->andWhere("tender_title like '%:title%'",array(':title'=>$param['tender_title']));
-			}else{
-				$query->where("tender_title like '%:title%'",array(':title'=>$param['tender_title']));
 			}
 			$has = true;
 		}
