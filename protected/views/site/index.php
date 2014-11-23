@@ -688,7 +688,7 @@ input:focus{
 	width:250px;
 	text-align:center;
 	padding:10px;
-	background-color:#333333;
+	background-color:#EB3F3C;
 	float:right;
 	font-size:15px;
 	font-weight:bold;
