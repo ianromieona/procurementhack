@@ -153,4 +153,29 @@ class Users extends CActiveRecord
 			return false;
 	}
 
+	public static function userEdit($params,$tags,$cat){
+		
+		$u = Users::model()->findByPk(Yii::app()->user->id);
+		$u->user_firstname = $params['name'];
+		$u->address = $params['company'];
+		$u->password = md5($params['password']);
+		$u->email = $params['email'];
+		$u->mobile = $params['mobile'];
+		if($u->save(false)){
+			$filters = Filters::model()->findByAttributes(array('userId'=>Yii::app()->user->id));
+			$filter->approved_budget = $params['budget'];
+			$filter->tags = $tags;
+			$filter->classification = $params['classification'];
+			$filter->save(false);
+			$cat2 = explode(",", $cat)
+			foreach($cat2 as $a=>$b){
+				$c = new Categories;
+				$c->category_name = $b;
+				$c->user_id = Yii::app()->user->id;
+				$c->save(false);
+			}
+		}
+
+	}
+
 }
