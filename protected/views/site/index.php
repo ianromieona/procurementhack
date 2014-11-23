@@ -34,18 +34,18 @@
 	<h1 class="title">Organization Analysis</h1>
 	<div class="row-fluid">
 		<div class="span4 stat">
-			<div class="text-center statTitle"><i class="fa fa-users"></i> Buyer Analysis</div>
-			<div class="text-center statResult"><?php echo $buyer; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-users"></i> Buyer Analysis</div>
+			<div class="text-center statResult" id="buyer"><?php echo $buyer; ?></div>
 			<div class="text-center sub">ORGANIZATION(S)</div>
 		</div>
 		<div class="span4 stat">
-			<div class="text-center statTitle"><i class="fa fa-truck"></i> Supplier Analysis</div>
-			<div class="text-center statResult"><?php echo $seller; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-truck"></i> Supplier Analysis</div>
+			<div class="text-center statResult" id="seller"><?php echo $seller; ?></div>
 			<div class="text-center sub">ORGANIZATION(S)</div>
 		</div>
 		<div class="span4 stat">
-			<div class="text-center statTitle"><i class="fa fa-pagelines"></i> CSO Analysis</div>
-			<div class="text-center statResult"><?php echo $cso; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-pagelines"></i> CSO Analysis</div>
+			<div class="text-center statResult" id="cso"><?php echo $cso; ?></div>
 			<div class="text-center sub">ORGANIZATION(S)</div>
 		</div>
 	</div>
@@ -53,13 +53,13 @@
 	<h1 class="title">Location Analysis</h1>
 	<div class="row-fluid">
 		<div class="span6 stat">
-			<div class="text-center statTitle"><i class="fa fa-arrow-circle-up"></i> Most Projects</div>
-			<div class="text-center statResult"><?php echo $location[0]['location']; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-arrow-circle-up"></i> Most Projects</div>
+			<div class="text-center statResult" id="loc1"><?php echo $location[0]['location']; ?></div>
 			<div class="text-center sub"><?php echo $location[0]['count']; ?> PROJECT(S)</div>
 		</div>
 		<div class="span6 stat">
-			<div class="text-center statTitle"><i class="fa fa-arrow-circle-down"></i> Least Projects</div>
-			<div class="text-center statResult"><?php echo $location[count($location)-1]['location']; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-arrow-circle-down"></i> Least Projects</div>
+			<div class="text-center statResult" id="loc2"><?php echo $location[count($location)-1]['location']; ?></div>
 			<div class="text-center sub"><?php echo $location[count($location)-1]['count']; ?> PROJECT(S)</div>
 		</div>
 	</div>
@@ -67,13 +67,13 @@
 	<h1 class="title">Bidder Analysis</h1>
 	<div class="row-fluid">
 		<div class="span6 stat">
-			<div class="text-center statTitle"><i class="fa fa-arrow-circle-up"></i> Most Bids</div>
-			<div class="text-center statResult2"><?php echo $bid[0]['bidder_name']; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-arrow-circle-up"></i> Most Bids</div>
+			<div class="text-center statResult2" id="bid1"><?php echo $bid[0]['bidder_name']; ?></div>
 			<div class="text-center sub"><?php echo $bid[0]['count']; ?> BID(S)</div>
 		</div>
 		<div class="span6 stat">
-			<div class="text-center statTitle"><i class="fa fa-arrow-circle-down"></i> Least Bids</div>
-			<div class="text-center statResult2"><?php echo $bid[count($bid)-1]['bidder_name']; ?></div>
+			<div class="text-center statTitle"><i class="icon fa fa-arrow-circle-down"></i> Least Bids</div>
+			<div class="text-center statResult2" id="bid2"><?php echo $bid[count($bid)-1]['bidder_name']; ?></div>
 			<div class="text-center sub"><?php echo $bid[count($bid)-1]['count']; ?> BID(S)</div>
 		</div>
 	</div>
@@ -603,15 +603,12 @@ input[type="text"] { /* reset normalize */
 	line-height:60px;
 	font-size:60px !important;
 }
+
 input:focus{
 	outline: none !important;
 	box-shadow:none !important;
 }
-
-#searchText{
-	color:#333;
-}
-
+#searchText{ color:#333; }
 .infoNear{
 	background-color:#E74C3C;
 	text-align:right;
@@ -644,34 +641,36 @@ input:focus{
 	padding-right:0.75em;
 	padding-bottom:0.75em;
 }
-
 .stat{
 	background-color:#FFFFFF;
 	padding:10px;
 }
-
 .statTitle{
 	padding-top:10px;
 	font-weight:bold;
 	font-size:30px;
 }
-
 .statResult{
 	padding-bottom:20px;
 	margin-top:30px;
 	font-weight:bold;
 	font-size:60px;
 }
-
 .statResult2{
 	padding-bottom:20px;
 	margin-top:30px;
 	font-weight:bold;
 	font-size:20px;
 }
-
-.sub{
-	font-weight:bold;
-}
+.sub{ font-weight:bold; }
+.icon{ color:#333; }
+#banner{ background-color:#333 !important; }
+#buyer{ color:#EB3F3C; }
+#seller{ color: #416CB2; }
+#cso{ color:#008500; }
+#loc1{ color:#FF7100; }
+#loc2{ color:#028E9B; }
+#bid1{ color:#530FAD; }
+#bid2{ color:#9FEE00; }
 
 </style>
