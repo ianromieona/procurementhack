@@ -74,13 +74,34 @@ class SmsController extends Controller
 			$list = Users::model()->findAll("auth_token <> ''");
 			//Common::pre($list, true);
 			foreach ($list as $value) {
-				/*$postlist = Post::model()->searchPost($params);
-				if($postlist){*/
+				$user = Users::model()->findByPk(Yii::app()->user->id);
+				$filters = Filters::model()->findByAttributes(array('userId'=>Yii::app()->user->id));
+				$cat = Categories::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id));
+				$params["classication"] = $filters["classification"];
+				$params["category"] = array();
+				foreach ($cat as $key => $value3) {
+					array_push($params["category"], $value3["category_name"]);
+				}
+				//Common::pre($params, true);
+				$postlist = Post::model()->searchPost($params);
+				//Common::pre($postlist, true);
+				if($postlist){
+					foreach ($postlist as $value2) {
+						$a = PostUser::model()->findByAttributes(array("post_id" => $value2["id"], "user_id" => $user["id"]));
+						if(!$a){
+							$postuser = new PostUser;
+							$postuser->post_id = $value2["id"];
+							$postuser->user_id = $user["id"];
+							//Common::pre($postuser, true);
+							$postuser->save(false);
+						}
+							
+					}
 					$mobile = $value["mobile"];
 					$access_token = $value["auth_token"];
 					$message = "This is a message";
 					Common::sendMessage($mobile, $access_token, $message);
-				//}
+				}
 			}
 		}
 
