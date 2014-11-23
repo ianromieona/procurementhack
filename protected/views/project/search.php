@@ -6,39 +6,55 @@
 	</form>
 	<div class="morphsearch-content">
 		<?php if(sizeOf($data) > 0){ ?>
+			<div class="row-fluid">
 			<?php if(($offset-1) != -1){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>">Previous</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>"><div class="span1">Previous</div></a>
 			<?php } ?>
 			<?php if(($offset*10) <= $count){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>">Next</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>"><div class="span1">Next</div></a>
 			<?php } ?>
+			</div>
+			<br/>
 			<?php for($counter = 0; $counter < sizeOf($data); $counter++){ ?>
-				<div class="dummy-media-object">
-					<a href="<?php echo Yii::app()->createAbsoluteUrl('/project/view',array('id'=>$data[$counter]['ref_id'])); ?>">
-						<h2 class="title"><?php echo $data[$counter]['tender_title']; ?></h2>
-					</a>
-					<div class="infoRated">
-						<?php if(isset($data[$counter]['approved_budget'])){ ?>
-						<br>
-						<small>
-							<b>Approved Budget: </b> Php<?php echo $data[$counter]['approved_budget']; ?>
-						</small>
-						<?php } ?>
-						<br>
-						<small>
-							<b>Date Published: </b><?php echo $data[$counter]['publish_date']; ?>
-							|
-							<b>Closing Date: </b><?php echo $data[$counter]['closing_date']; ?>
-						</small>
+				<?php if(($counter%2) == 0){ ?>
+					<div class="row-fluid">
+				<?php } ?>
+					<div class="span6">
+						<div class="dummy-media-object">
+							<a style="color:#333;" href="<?php echo Yii::app()->createAbsoluteUrl('/project/view',array('id'=>$data[$counter]['ref_id'])); ?>">
+								<h2 class="title"><?php echo $data[$counter]['tender_title']; ?></h2>
+							</a>
+							<p class="lead">
+								<?php echo $data[$counter]['description']; ?>
+							</p>
+							<div class="infoRated">
+								<?php if(isset($data[$counter]['approved_budget'])){ ?>
+								<br>
+								<small>
+									<b>Approved Budget: </b> Php<?php echo $data[$counter]['approved_budget']; ?>
+								</small>
+								<?php } ?>
+								<br>
+								<small>
+									<b>Date Published: </b><?php echo $data[$counter]['publish_date']; ?>
+									|
+									<b>Closing Date: </b><?php echo $data[$counter]['closing_date']; ?>
+								</small>
+							</div>
+						</div>
 					</div>
-				</div>
+				<?php if(($counter%2) != 0){ ?>
+					</div>
+				<?php } ?>
 			<?php } ?>
+			<div class="row-fluid">
 			<?php if(($offset-1) != -1){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>">Previous</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>"><div class="span1">Previous</div></a>
 			<?php } ?>
 			<?php if(($offset*10) <= $count){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>">Next</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>"><div class="span1">Next</div></a>
 			<?php } ?>
+			</div>
 		<?php }else{ ?>
 			<a class="dummy-media-object"><h1>No Projects to Show</h1></a>
 		<?php } ?>
@@ -259,7 +275,7 @@ input[type="text"] { /* reset normalize */
 }
 
 .dummy-column h1 {
-	font-family: 'Lato2';
+	font-family: 'Lato2' !important;
 	font-size: 1.5em;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -269,11 +285,11 @@ input[type="text"] { /* reset normalize */
 }
 
 .dummy-column h2 {
-	font-size: 1.1em;
+	font-size: 1.1em !important;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	font-weight: 400;
-	color: #333;
+	color: #333 !important;
 	padding: 0.5em 0;
 }
 
@@ -285,9 +301,8 @@ input[type="text"] { /* reset normalize */
 	display: block;
 	margin: 0.3em 0;
 	cursor: pointer;
-	border-radius: 5px;
 	background: rgba(118,117,128,0.05);
-}
+}}
 
 .dummy-media-object:hover,
 .dummy-media-object:focus {
@@ -399,14 +414,53 @@ input:focus{
 }
 
 .infoRated{
-	background-color:#333;
+	background-color:#555;
 	text-align:right;
 	color:#FFFFFF;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
 	padding-left:0.75em;
 	padding-right:0.75em;
 	padding-bottom:0.75em;
 }
 
+.span6{
+	font-size: 1.1em !important;
+	letter-spacing: 1px !important;
+	text-transform: uppercase !important;
+	font-weight: 400 !important;
+	color: #333 !important;
+	padding: 0.5em 0 !important;
+}
+h2{
+	font-size: 1.1em !important;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 400;
+	width: 90%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.lead{
+	padding-left:30px;
+	font-size:10px;
+	width: 90%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.pagination{
+	color:#FFFFFF;
+}
+.pagination:hover{
+	color:#FFFFFF;
+}
+.pagination > div{
+	width:100px;
+	text-align:center;
+	text-transform: uppercase;
+	font-weight:400;
+	padding:5px;
+	background-color:#333;
+	border:1px solid #000000;
+}
 </style>
