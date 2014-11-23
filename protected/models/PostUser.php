@@ -94,4 +94,15 @@ class PostUser extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function get($id){
+		$query = Yii::app()->db->createCommand()
+			->select('*')
+			->from('post_user ps')
+			->join('post p','p.id=ps.post_id')
+			->where('ps.user_id =:id',array(':id'=>$id))
+			->queryAll();
+
+		return $query;
+	}
 }

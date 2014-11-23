@@ -26,7 +26,7 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category_name, user_id', 'required'),
+			// array('category_name, user_id', 'required'),
 			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('category_name', 'length', 'max'=>100),
 			// The following rule is used by search().
