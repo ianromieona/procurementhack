@@ -45,7 +45,7 @@ class SmsController extends Controller
 		$hasResult = false;
 		if(isset($formdata)){
 			$param = $formdata;
-			$param["limit"] = 1;
+			$param["limit"] = 100;
 			$param["offset"] = 0;
 			$query = PhilGepsApi::searchWithFilter($param);
 			//Common::pre($query, true);
@@ -73,17 +73,16 @@ class SmsController extends Controller
 		if($hasResult){
 			$list = Users::model()->findAll("auth_token <> ''");
 			//Common::pre($list, true);
-			foreach ($list as $value) {
-				$user = Users::model()->findByPk(Yii::app()->user->id);
+			foreach ($list as $user) {
 				$filters = Filters::model()->findByAttributes(array('userId'=>Yii::app()->user->id));
 				$cat = Categories::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id));
-				$params["tags"] = explode(",", $filters["tags"]);
+				$params["tags"] = explode("|", $filters["tags"]);
 				$params["classication"] = $filters["classification"];
 				$params["category"] = array();
 				foreach ($cat as $key => $value3) {
 					array_push($params["category"], $value3["category_name"]);
 				}
-				//Common::pre($params, true);
+				//00Common::pre($params, true);
 				$postlist = Post::model()->searchPost($params);
 				//Common::pre($postlist, true);
 				if($postlist){
@@ -96,12 +95,14 @@ class SmsController extends Controller
 							//Common::pre($postuser, true);
 							$postuser->save(false);
 						}
-							
 					}
-					$mobile = $value["mobile"];
-					$access_token = $value["auth_token"];
+					$mobile = $user["mobile"];
+					$access_token = $user["auth_token"];
 					$message = "There are ".sizeof($postlist)." new post. Visit your account for details";
+					//echo $message;
 					Common::sendMessage($mobile, $access_token, $message);
+				}else{
+					echo "No updates for ".$user["id"]."<br>";
 				}
 			}
 		}

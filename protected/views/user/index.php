@@ -32,7 +32,20 @@
 
 		<div class="span8">
 			<div class="well">
-				b
+					
+				<?php if($get){ ?>
+					<?php foreach ($get as $key => $value) { ?>
+					<div class="row-fluid">
+						<div class="span12">
+							<label class="labels"><a href="<?php echo $this->createUrl('project/view',array('id'=>$value['ref_id']));?>"><?php echo $value['tender_title'];?></a></label>
+							<?php if($value['description']){?>
+							<p><?php echo substr($value['description'], strlen($value['description']),300);?></p>
+							<?php }else{echo "No Description";} ?>
+							<span class="text-info">Publish Date <?php echo $value['publish_date'];?></span>
+						</div>	
+					</div> 
+					<?php } ?>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
