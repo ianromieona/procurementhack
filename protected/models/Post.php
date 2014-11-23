@@ -116,13 +116,14 @@ class Post extends CActiveRecord
 		$query = Yii::app()->db->createCommand()->select('*')->from('post');
 		$has = false;
 		$loop = false;
+		//Common::pre($param);
 		if(isset($param['tags'])){
 			foreach ($param['tags'] as $value) {
 				if($loop){
-					$query->andWhere("ref_id like '%:id%' and tender_title like '%:id%'",array(':id'=>$value));
+					$query->andWhere("ref_id like '%:id%' or tender_title like '%:id%' or description like '%:id%'",array(':id'=>$value));
 				}else{
-					$query->where("ref_id like '%:id%' and tender_title like '%:id%'",array(':id'=>$value));
-					$loop=true
+					$query->where("ref_id like '%:id%' or tender_title like '%:id%' or description like '%:id%'",array(':id'=>$value));
+					$loop=true;
 				}
 			}
 			$has = true;

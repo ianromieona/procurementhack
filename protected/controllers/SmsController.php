@@ -77,6 +77,7 @@ class SmsController extends Controller
 				$user = Users::model()->findByPk(Yii::app()->user->id);
 				$filters = Filters::model()->findByAttributes(array('userId'=>Yii::app()->user->id));
 				$cat = Categories::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id));
+				$params["tags"] = explode(",", $filters["tags"]);
 				$params["classication"] = $filters["classification"];
 				$params["category"] = array();
 				foreach ($cat as $key => $value3) {
@@ -99,7 +100,7 @@ class SmsController extends Controller
 					}
 					$mobile = $value["mobile"];
 					$access_token = $value["auth_token"];
-					$message = "This is a message";
+					$message = "There are ".sizeof($postlist)." new post. Visit your account for details";
 					Common::sendMessage($mobile, $access_token, $message);
 				}
 			}
