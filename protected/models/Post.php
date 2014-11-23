@@ -119,9 +119,9 @@ class Post extends CActiveRecord
 		if(isset($param['tags'])){
 			foreach ($param['tags'] as $value) {
 				if($loop){
-					$query->andWhere("ref_id like '%:id%' and tender_title like '%:id%'",array(':id'=>$value));
+					$query->andWhere("ref_id like '%:id%' or tender_title like '%:id%'",array(':id'=>$value));
 				}else{
-					$query->where("ref_id like '%:id%' and tender_title like '%:id%'",array(':id'=>$value));
+					$query->where("ref_id like '%:id%' or tender_title like '%:id%'",array(':id'=>$value));
 					$loop=true
 				}
 			}
