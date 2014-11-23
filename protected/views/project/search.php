@@ -6,12 +6,15 @@
 	</form>
 	<div class="morphsearch-content">
 		<?php if(sizeOf($data) > 0){ ?>
+			<div class="row-fluid">
 			<?php if(($offset-1) != -1){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>">Previous</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>"><div class="span1">Previous</div></a>
 			<?php } ?>
 			<?php if(($offset*10) <= $count){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>">Next</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>"><div class="span1">Next</div></a>
 			<?php } ?>
+			</div>
+			<br/>
 			<?php for($counter = 0; $counter < sizeOf($data); $counter++){ ?>
 				<?php if(($counter%2) == 0){ ?>
 					<div class="row-fluid">
@@ -44,12 +47,14 @@
 					</div>
 				<?php } ?>
 			<?php } ?>
+			<div class="row-fluid">
 			<?php if(($offset-1) != -1){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>">Previous</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset-1))); ?>"><div class="span1">Previous</div></a>
 			<?php } ?>
 			<?php if(($offset*10) <= $count){ ?>
-			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>">Next</a>
+			<a class="pagination" href="<?php echo Yii::app()->createAbsoluteUrl('project/search',array('keyword'=>$key,'offset'=>($offset+1))); ?>"><div class="span1">Next</div></a>
 			<?php } ?>
+			</div>
 		<?php }else{ ?>
 			<a class="dummy-media-object"><h1>No Projects to Show</h1></a>
 		<?php } ?>
@@ -442,5 +447,20 @@ h2{
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.pagination{
+	color:#FFFFFF;
+}
+.pagination:hover{
+	color:#FFFFFF;
+}
+.pagination > div{
+	width:100px;
+	text-align:center;
+	text-transform: uppercase;
+	font-weight:400;
+	padding:5px;
+	background-color:#333;
+	border:1px solid #000000;
 }
 </style>
