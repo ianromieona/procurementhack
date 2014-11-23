@@ -1,5 +1,3 @@
-
-<?php echo $this->renderPartial("//layouts/header/head");?>
 <div class="container">
 	<div class="row-fluid">
 		<div class="span4">
@@ -16,7 +14,7 @@
 			</div>
 			<div class="well useredit" style="display:none">
 				<form method="POST">
-
+					
 					<br>
 					<h2><input type="text" name="User[name]" class="span12" placeholder="Fullname" value="<?php echo $user->user_firstname; ?>"><h2>
 					<input type="text" name="User[email]" class="span12" placeholder="Email" value="<?php echo $user->email; ?>"><br>
@@ -34,7 +32,20 @@
 
 		<div class="span8">
 			<div class="well">
-				b
+					
+				<?php if($get){ ?>
+					<?php foreach ($get as $key => $value) { ?>
+					<div class="row-fluid">
+						<div class="span12">
+							<label class="labels"><a href="<?php echo $this->createUrl('project/view',array('id'=>$value['ref_id']));?>"><?php echo $value['tender_title'];?></a></label>
+							<?php if($value['description']){?>
+							<p><?php echo substr($value['description'], strlen($value['description']),300);?></p>
+							<?php }else{echo "No Description";} ?>
+							<span class="text-info">Publish Date <?php echo $value['publish_date'];?></span>
+						</div>	
+					</div> 
+					<?php } ?>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
