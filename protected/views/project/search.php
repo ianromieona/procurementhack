@@ -7,7 +7,12 @@
 	<div id="banner">
 		<b>SEARCH RESULTS</b>
 	</div>
+	<?php if(Yii::app()->user->isGuest){ ?>
 	<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>">LOGIN</a></div>
+	<?php }else{ ?>
+	<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('user/index'); ?>">MY PROFILE</a></div>
+	<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/logout'); ?>">LOGOUT</a></div>
+	<?php } ?>
 	<div class="morphsearch-content">
 		<?php if(sizeOf($data) > 0){ ?>
 			<div class="row-fluid">
