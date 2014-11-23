@@ -21,6 +21,7 @@ class ProjectController extends Controller
 		// Common::pre(PhilgepsApi::searchWithFilter($param),true);
 		// Common::pre(PhilgepsApi::listPhilgepsData(PhilgepsApi::searchWithFilter($param)),true);
 		// Common::pre(Post::searchPost($param),true);
+		// Common::pre($pdata[0],true);
 		$this->render('view',array('data'=>$pdata[0],'refId'=>$id,'items'=>$idata));
 	}
 
