@@ -4,6 +4,10 @@
 		<input type="hidden" name="location" id="location" value="Makati">
 		<button class="morphsearch-submit" type="submit" value="search"><i class="fa fa-search"></i></button>
 	</form>
+	<div id="banner">
+		<b>SEARCH RESULTS</b>
+	</div>
+	<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>">LOGIN</a></div>
 	<div class="morphsearch-content">
 		<?php if(sizeOf($data) > 0){ ?>
 			<div class="row-fluid">
@@ -58,9 +62,10 @@
 		<?php }else{ ?>
 			<a class="dummy-media-object"><h1>No Projects to Show</h1></a>
 		<?php } ?>
+
 	</div>
 </div>
-<div>
+
 <style>
 .morphsearch {
 	width: 200px;
@@ -462,5 +467,30 @@ h2{
 	padding:5px;
 	background-color:#333;
 	border:1px solid #000000;
+}
+#banner{ 
+	padding:20px;
+	padding-left:200px;
+	background-color:#333 !important;
+	color:#FFFFFF;
+	font-size:30px;
+}
+
+.loginLink{
+	width:250px;
+	text-align:center;
+	padding:10px;
+	background-color:#333333;
+	float:right;
+	font-size:15px;
+	font-weight:bold;
+	margin-right:20px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	border-top:2px solid #57595B;
+}
+
+.loginLink > a{
+	color:#FFFFFF;
 }
 </style>
