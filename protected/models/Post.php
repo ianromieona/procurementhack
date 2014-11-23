@@ -116,13 +116,13 @@ class Post extends CActiveRecord
 		$query = Yii::app()->db->createCommand()->select('*')->from('post');
 		$has = false;
 		$loop = false;
-		//Common::pre($param);
+		// Common::pre($param["tags"]);
 		if(isset($param['tags'])){
 			foreach ($param['tags'] as $value) {
 				if($loop){
-					$query->andWhere("ref_id like '%:id%' or tender_title like '%:id%' or description like '%:id%'",array(':id'=>$value));
+					$query->andWhere("ref_id like :id or tender_title like :id or description like :id",array(':id'=>'%'.$value.'%'));
 				}else{
-					$query->where("ref_id like '%:id%' or tender_title like '%:id%' or description like '%:id%'",array(':id'=>$value));
+					$query->where("ref_id like :id or tender_title like :id or description like :id",array(':id'=>'%'.$value.'%'));
 					$loop=true;
 				}
 			}
@@ -136,14 +136,7 @@ class Post extends CActiveRecord
 			}
 			$has = true;
 		}
-		if(isset($param['description'])){
-			if($has){
-				$query->andWhere("description like '%:desc%'",array(':desc'=>$param['description']));
-			}else{
-				$query->where("description like '%:desc%'",array(':desc'=>$param['description']));
-			}
-			$has = true;
-		}
+
 		if(isset($param['dateFrom'])){
 			if($has){
 				$query->andWhere('publish_date>= :datefrom',array(':datefrom'=>$param['dateFrom']));
@@ -184,7 +177,7 @@ class Post extends CActiveRecord
 			}
 			$has = true;
 		}
-
+		//Common::pre($query,true);
 		return $query->queryAll();
 	}
 }

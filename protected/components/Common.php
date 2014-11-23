@@ -25,6 +25,7 @@
 		$url = str_replace('{senderAddress}',$senderAddressSuffix, $url);
 		$url = str_replace('{access_token}',$access_token, $url);
 		//Common::pre($url, true);
+		echo "URL : ".$url;
 		$service_number = strlen($service_number) == 10 ? "0".$service_number : $service_number;
 		$params = array("outboundSMSMessageRequest" => array(
 			'senderAddress' => "tel:".$senderAddressSuffix,
@@ -33,6 +34,7 @@
 		));
 		$data_string = json_encode($params);
 		//Common::pre($data_string, true);
+		echo "<br> Parameters: ".$data_string;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);

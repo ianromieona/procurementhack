@@ -92,10 +92,10 @@ $(document).ready(function(){
 			url:"https://maps.googleapis.com/maps/api/geocode/json?latlng="+$lat+","+$lng,
 			type:'GET',
 			success:function(result){
-				$('#location').val(result['results']['2']['address_components']['0']['long_name']);
-				$('.loc').append(result['results']['2']['address_components']['0']['long_name']);
+				$('#location').val(result['results']['2']['address_components']['1']['long_name']);
+				$('.loc').append(result['results']['2']['address_components']['1']['long_name']);
 				//get current location
-				$location = result['results']['2']['address_components']['0']['long_name'];
+				$location = result['results']['2']['address_components']['1']['long_name'];
 				//API call url
 				$url = "<?php echo Yii::app()->createAbsoluteUrl('api/callData'); ?>";
 				//queries
@@ -111,7 +111,6 @@ $(document).ready(function(){
 						$resultData = jQuery.parseJSON(result);
 						if($resultData.length > 0){
 							for($counter = 0; $counter < $resultData.length; $counter++){
-								console.log($resultData[$counter]);
 								$title = ($resultData[$counter]['tender_title'])?$resultData[$counter]['tender_title']:"No Title";
 								$('.nearby').append('<div class="dummy-media-object"><a href="<?php echo Yii::app()->createAbsoluteUrl("project")?>/'+$resultData[$counter]['ref_id']+'"><h2 class="title">'+$title+'</h2></a>'
 														   +'<div class="infoNear"><br/><small><b>Date Published: </b>'+$resultData[$counter]['publish_date']
