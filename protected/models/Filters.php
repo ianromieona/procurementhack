@@ -28,14 +28,14 @@ class Filters extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userId', 'required'),
+			// array('userId', 'required'),
 			array('userId', 'numerical', 'integerOnly'=>true),
 			array('approved_budget', 'length', 'max'=>30),
-			array('category', 'length', 'max'=>100),
+			// array('category', 'length', 'max'=>100),
 			array('tags', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, userId, approved_budget, category, tags', 'safe', 'on'=>'search'),
+			array('id, userId, approved_budget, tags, classification', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +59,6 @@ class Filters extends CActiveRecord
 			'id' => 'ID',
 			'userId' => 'User',
 			'approved_budget' => 'Approved Budget',
-			'category' => 'Category',
 			'tags' => 'Tags',
 		);
 	}

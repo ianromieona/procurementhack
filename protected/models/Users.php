@@ -153,26 +153,40 @@ class Users extends CActiveRecord
 			return false;
 	}
 
-	public static function userEdit($params,$tags,$cat){
+	public static function userEdit($params,$budget,$classification,$tags,$cat){
 		
 		$u = Users::model()->findByPk(Yii::app()->user->id);
 		$u->user_firstname = $params['name'];
-		$u->address = $params['company'];
+		$u->address = $params['address'];
 		$u->password = md5($params['password']);
 		$u->email = $params['email'];
 		$u->mobile = $params['mobile'];
 		if($u->save(false)){
 			$filters = Filters::model()->findByAttributes(array('userId'=>Yii::app()->user->id));
-			$filter->approved_budget = $params['budget'];
-			$filter->tags = $tags;
-			$filter->classification = $params['classification'];
-			$filter->save(false);
-			$cat2 = explode(",", $cat);
+			// Common::pre($filters);exit;
+			if($filters){
+				$filters->approved_budget = $budget;
+				$filters->tags = $tags;
+				$filters->classification = $classification;
+				$filters->save();
+			}
+			else{
+				$filter2 = new Filters;
+				$filter2->approved_budget = $budget;
+				$filter2->tags = $tags;
+				$filter2->classification = $classification;
+				$filter2->save();
+			}
+			$getcat = Categories::model()->findAllByAttributes(array('user_id'=>Yii::app()->user->id));
+			if($getcat){
+				$getcat->delete();
+			}
+			$cat2 = explode("|", $cat);
 			foreach($cat2 as $a=>$b){
 				$c = new Categories;
 				$c->category_name = $b;
 				$c->user_id = Yii::app()->user->id;
-				$c->save(false);
+				$c->save();
 			}
 		}
 

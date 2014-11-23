@@ -5,20 +5,28 @@
 				<h1><?php echo $user->user_firstname; ?><i class="fa fa-edit pull-right editProfile" tool-tip="Edit"></i></h1>
 				<span class='muted'><i class="fa fa-envelope"></i> <?php echo $user->email; ?></span><br>
 				<span class='muted'><i class="fa fa-user"></i> <?php echo $user->mobile; ?></span><br>
+				<span class='muted'><i class="fa fa-briefcase"></i> <?php echo $user->address; ?></span><br>
 				<h6><b>Filters:</b> </h6>
 				<b>Approved Budget Range:</b> <span class='text-error'>₱ <?php echo ($filters->approved_budget)?$filters->approved_budget:"None"; ?></span><br>
 				<b>Tags:</b> <span class='text-error'><?php echo ($filters->tags)?$filters->tags:"None"; ?></span><br>
 				<b>Classification:</b> <span class='text-error'><?php echo ($filters->classification)?$filters->classification:"None"; ?></span><br>
 				<b>Categories:</b> <span class='text-error'><?php if($cat){ foreach($cat as $key => $data){ echo $data['category_name'].', '; } } else { echo "None"; } ?></span><br>
 			</div>
-			<div class="well useredit">
-				<h2><input type="text" name="User[name]" class="span12" placeholder="Fullname" value="<?php echo $user->user_firstname; ?>"><h2>
-				<input type="text" name="User[email]" class="span12" placeholder="Email" value="<?php echo $user->email; ?>"><br>
-				<input type="text" name="User[mobile]" class="span12" placeholder="Mobile" value="<?php echo $user->mobile; ?>"><br>
-				<input type="password" name="User[password]" class="span12" placeholder="Password"><br>
-				<input type="text" name="tags" placeholder="Tags" class="tm-input span3"/><br>
-				<input type="text" name="User[classification]" class="span12" placeholder="Classification" value="<?php echo $filters->classification; ?>"><br>
-				<input type="text" name="cat" placeholder="Categories" class="cat-input span4"/><br>
+			<div class="well useredit" style="display:none">
+				<form method="POST">
+					
+					<br>
+					<h2><input type="text" name="User[name]" class="span12" placeholder="Fullname" value="<?php echo $user->user_firstname; ?>"><h2>
+					<input type="text" name="User[email]" class="span12" placeholder="Email" value="<?php echo $user->email; ?>"><br>
+					<input type="text" name="User[mobile]" class="span12" placeholder="Mobile" value="<?php echo $user->mobile; ?>"><br>
+					<input type="text" name="User[address]" class="span12" placeholder="Company" value="<?php echo $user->address; ?>"><br>
+					<input type="password" name="User[password]" class="span12" placeholder="Password"><br>
+					<input type="text" name="budget" class="span12" placeholder="Budget Range" value="<?php echo $filters->approved_budget; ?>"><br>
+					<input type="text" name="tags" placeholder="Tags" class="tm-input span3"/><br>
+					<input type="text" name="classification" class="span12" placeholder="Classification" value="<?php echo $filters->classification; ?>"><br>
+					<div class="amp"><input type="text" name="cat" placeholder="Categories" class="cat-input span4"/></div><br>
+					<input type="submit" name="submit" value="Update" class="btn btn-danger pull-right"><span class="btn btn-danger pull-right canceleditProfile">Cancel</span>
+				</form>
 			</div>
 		</div>
 
@@ -38,9 +46,12 @@
 	color: #E74C3C !important;
 	cursor: pointer;
 }
+.well{
+	background: #fff !important;
+}
 </style>
 <?php
-$tag = explode(',',$filters['tags']);
+$tag = explode('|',$filters['tags']);
 $tags = "";
 $tags2 = "";
 foreach($tag as $val){
@@ -53,11 +64,22 @@ foreach($cat as $key=>$val){
 <script>
 	$(document).ready(function(){
 		var result2= "";
+
+		$(".editProfile").click(function(){
+			$(".userinfo").hide();
+			$('.useredit').fadeIn('slow');
+		})
+
+		$(".canceleditProfile").click(function(){
+			$(".useredit").hide();
+			$('.userinfo').fadeIn('slow');
+		})
+
 		$(".tm-input").tagsManager({
 	      	prefilled: [<?php echo trim($tags, ","); ?>],
 	    });
 	   
-	    var tagApi = jQuery(".cat-input").tagsManager({
+	    jQuery(".cat-input").tagsManager({
 	      prefilled: [<?php echo trim($tags2, ","); ?>]
 	    });
 	 
@@ -81,7 +103,7 @@ foreach($cat as $key=>$val){
 		// 	})
 		// })
 		data = new Array();
-	    $(".cat-input").typeahead({
+	    jQuery(".cat-input").typeahead({
 	        source: function(){
 		        $.ajax({
 					url:"<?php echo $this->createUrl('/user/getCategory'); ?>",
@@ -94,9 +116,9 @@ foreach($cat as $key=>$val){
 						}
 					}
 				})	
-						return data;
+				return data;
 	        },
 	        displayField: 'business_category',
-		});
+		})
 	})
 </script>
