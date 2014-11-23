@@ -27,6 +27,10 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		if(isset($_GET["successsubscribe"])){
+
+			Yii::app()->user->setFlash('alert','You have successfully subscribed to notification');
+		}
 		$buyer = "Select COUNT(*) from \"ec10e1c4-4eb3-4f29-97fe-f09ea950cdf1\" where member_type_id = 2 AND org_status = 'Active'";
 		$seller = "Select COUNT(*) from \"ec10e1c4-4eb3-4f29-97fe-f09ea950cdf1\" where member_type_id = 3 AND org_status = 'Active'";
 		$cso = "Select COUNT(*) from \"ec10e1c4-4eb3-4f29-97fe-f09ea950cdf1\" where member_type_id = 7 AND org_status = 'Active'";
@@ -104,6 +108,8 @@ class SiteController extends Controller
 		}
 		$model=new Users('login');
 		$modelr=new Users('register');
+
+		
 
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')

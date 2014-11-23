@@ -22,19 +22,19 @@ class SmsController extends Controller
 			$result = json_decode(curl_exec($ch),TRUE);
 			curl_close($ch);
 
-			Common::pre($result["access_token"], true);
+			//Common::pre($result["access_token"], true);
 
 			if(isset($result)){
 				Yii::app()->session["access_token"] = $result["access_token"];
 				$user 		 = Users::model()->findByPk(Yii::app()->user->id);
-				//Common::pre(Yii::app()->user, true);
+				//Common::pre($user, true);
 				$user->auth_token = $result["access_token"];
 				$user->mobile = $result["subscriber_number"];
 				$user->save(false);
 			}else{
 				return "error";
 			}
-			$this->redirect("/site/index");
+			$this->redirect("/procurementhack/site/index?successsubscribe");
 		}
 	}
 
@@ -55,7 +55,9 @@ class SmsController extends Controller
 				$hasResult = true;
 				foreach ($result as  $value) {
 					//Common::pre($value, true);
-					$model = new Post;
+					$model = Post::model()->findByAttributes(array("ref_id" => $value['ref_id']));
+					if(!$model)
+						$model = new Post;
 					$model->ref_id = $value['ref_id'];
 					$model->publish_date = $value['publish_date'];
 					$model->classification = $value['classification'];
@@ -72,13 +74,13 @@ class SmsController extends Controller
 			$list = Users::model()->findAll("auth_token <> ''");
 			//Common::pre($list, true);
 			foreach ($list as $value) {
-				$postlist = Post::model()->searchPost($params);
-				if($postlist){
+				/*$postlist = Post::model()->searchPost($params);
+				if($postlist){*/
 					$mobile = $value["mobile"];
 					$access_token = $value["auth_token"];
 					$message = "This is a message";
 					Common::sendMessage($mobile, $access_token, $message);
-				}
+				//}
 			}
 		}
 

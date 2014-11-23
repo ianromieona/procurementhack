@@ -27,6 +27,9 @@
 	</div>
 </div>
 <div class="container wrapper analytics">
+	<?php if(Yii::app()->user->hasFlash('alert')): ?>
+		<div class="alert alert-info">  <?php echo Yii::app()->user->getFlash('alert'); ?></div>
+	<?php endif; ?>
 	<div class="pad30"></div>
 	<h1 class="title">Organization Analysis</h1>
 	<div class="row-fluid">
