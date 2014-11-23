@@ -38,25 +38,47 @@ class SmsController extends Controller
 		}
 	}
 
+	//curl -d "dateFrom=&dateTo=" "http://procurementhack.ngrok.com/procurementhack/"
 	function actionFetch(){
 		$formdata = serialize($_POST);
 		$formdata = unserialize($formdata);
-		$hasResult = true;
-		/*if(isset($formdata)){
+		$hasResult = false;
+		if(isset($formdata)){
 			$param = $formdata;
-			$query = PhilGeps::searchWithFilter($param);
-			$result = PhilGeps::listPhilgepsData($query);
-
-		}*/
+			$param["limit"] = 1;
+			$param["offset"] = 0;
+			$query = PhilGepsApi::searchWithFilter($param);
+			//Common::pre($query, true);
+			$result = PhilGepsApi::listPhilgepsData($query);
+			//Common::pre($result, true);
+			if($result){
+				$hasResult = true;
+				foreach ($result as  $value) {
+					//Common::pre($value, true);
+					$model = new Post;
+					$model->ref_id = $value['ref_id'];
+					$model->publish_date = $value['publish_date'];
+					$model->classification = $value['classification'];
+					$model->description = $value['description'];
+					$model->business_category = $value['business_category'];
+					$model->location = $value['location'];
+					$model->tender_title = $value['tender_title'];
+					$model->save(false);
+				}
+			}
+		}
 
 		if($hasResult){
 			$list = Users::model()->findAll("auth_token <> ''");
 			//Common::pre($list, true);
 			foreach ($list as $value) {
-				$mobile = $value["mobile"];
-				$access_token = $value["auth_token"];
-				$message = "This is a message";
-				Common::sendMessage($mobile, $access_token, $message);
+				$postlist = Post::model()->searchPost($params);
+				if($postlist){
+					$mobile = $value["mobile"];
+					$access_token = $value["auth_token"];
+					$message = "This is a message";
+					Common::sendMessage($mobile, $access_token, $message);
+				}
 			}
 		}
 
