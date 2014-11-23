@@ -27,9 +27,19 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$buyer = "Select COUNT(*) from \"ec10e1c4-4eb3-4f29-97fe-f09ea950cdf1\" where member_type_id = 2 AND org_status = 'Active'";
+		$seller = "Select COUNT(*) from \"ec10e1c4-4eb3-4f29-97fe-f09ea950cdf1\" where member_type_id = 3 AND org_status = 'Active'";
+		$cso = "Select COUNT(*) from \"ec10e1c4-4eb3-4f29-97fe-f09ea950cdf1\" where member_type_id = 7 AND org_status = 'Active'";
+
+		$perLoc = "Select COUNT(*) as count, location from \"116b0812-23b4-4a92-afcc-1030a0433108\" group by location order by count DESC";
+
+		$bids = "Select COUNT(*) as count, bidder_name from \"6427affb-e841-45b8-b0dc-ed267498724a\" group by bidder_name order by count DESC";
+		$bCount = PhilgepsApi::listPhilgepsData($buyer);
+		$sCount = PhilgepsApi::listPhilgepsData($seller);
+		$cCount = PhilgepsApi::listPhilgepsData($cso);
+		$perLocation = PhilgepsApi::listPhilgepsData($perLoc);
+		$bid = PhilgepsApi::listPhilgepsData($bids);
+		$this->render('index',array('buyer'=>$bCount[0]['count'],'seller'=>$sCount[0]['count'],'cso'=>$cCount[0]['count'],'location'=>$perLocation,'bid'=>$bid));
 	}
 
 	/**

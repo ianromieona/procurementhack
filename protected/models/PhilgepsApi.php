@@ -116,7 +116,20 @@ class PhilgepsApi extends CFormModel
 				$where .= $and."(".$orWhere.")";
 			}
 		}
-		$data = "Select ref_id, tender_title, description, publish_date, closing_date, location from \"baccd784-45a2-4c0c-82a6-61694cd68c9d\" b LEFT JOIN \"116b0812-23b4-4a92-afcc-1030a0433108\" l ON b.ref_id = l.refid WHERE ".$where." order by b.publish_date desc limit 15 offset 0;";
+		if($where){
+			$where = "WHERE ".$where;
+		}
+		$limit = "";
+		if($param["limit"]){
+			$limit = "limit ".$param["limit"];
+		}
+		$offset = "";
+		if($param["offset"]){
+			$offset = "offset ".$param["offset"];
+		}
+		$data = "Select ref_id, tender_title, description, publish_date, closing_date, location, classification, business_category from \"baccd784-45a2-4c0c-82a6-61694cd68c9d\" b LEFT JOIN \"116b0812-23b4-4a92-afcc-1030a0433108\" l ON b.ref_id = l.refid ".$where." order by b.publish_date desc ".$limit." ".$offset.";";
 		return $data;
-	} 
+	}
+
+
 }
