@@ -22,10 +22,11 @@
 <div id="banner">
 	<div class="container intro_wrapper">
 		<div class="inner_content">
-			<div class="pad30"></div>
+			<a href="<?php echo Yii::app()->createAbsoluteUrl('site/login'); ?>"><span class="brand">TipBiz<br/><small style="padding-left:55px;color:#CC0000;font-weight:600">Be Aware</small></span></a>
 		</div>
 	</div>
 </div>
+<div class="loginLink"><a href="<?php echo Yii::app()->createAbsoluteUrl('sit/login'); ?>">LOGIN</a></div>
 <div class="container wrapper analytics">
 	<div class="pad30"></div>
 	<h1 class="title">Organization Analysis</h1>
@@ -669,5 +670,28 @@ input:focus{
 #loc2{ color:#028E9B; }
 #bid1{ color:#530FAD; }
 #bid2{ color:#9FEE00; }
+
+.brand{
+	color:#FFFFFF;
+	font-size:40px;
+}
+
+.loginLink{
+	width:250px;
+	text-align:center;
+	padding:10px;
+	background-color:#333333;
+	float:right;
+	font-size:15px;
+	font-weight:bold;
+	margin-right:20px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	border-top:2px solid #57595B;
+}
+
+.loginLink > a{
+	color:#FFFFFF;
+}
 
 </style>
